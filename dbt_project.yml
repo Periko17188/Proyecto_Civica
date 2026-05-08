@@ -39,11 +39,11 @@ models:
   Proyecto_Civica:
 
     Silver:
-      +database: Silver
-      +schema: Silver
+      +database: DEV_SILVER_DB
+      +schema: SQL_DATOS
       +materialized: view
       
     Gold:
-      +database: Gold
-      +schema: Gold
+      +database: DEV_GOLD_DB
+      +schema: SQL_DATOS
       +materialized: table

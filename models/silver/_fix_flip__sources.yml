@@ -1,0 +1,326 @@
+# ============================================================================
+# _fix_flip__sources.yml — Sources Bronze del proyecto Fix & Flip
+# ============================================================================
+# Define las tablas raw cargadas desde Amazon S3 a Snowflake.
+# Estas tablas pertenecen a la capa Bronze y se usarán como origen para
+# construir los modelos Silver con dbt.
+#
+# Entornos:
+#   DEV → DEV_BRONZE_DB
+#   PRE → PRE_BRONZE_DB
+#   PRO → PRO_BRONZE_DB
+#
+# Para usar un entorno:
+#   PowerShell: $env:DBT_ENVIRONMENTS="DEV"
+# ============================================================================
+
+version: 2
+
+sources:
+
+  - name: fix_flip_bronze
+    description: >
+      Datos en bruto del proyecto Fix & Flip cargados en Snowflake desde Amazon S3.
+      Representan la capa Bronze de la arquitectura Medallion.
+
+    database: "{{ env_var('DBT_ENVIRONMENTS', 'DEV') }}_BRONZE_DB"
+    schema: SQL_DATOS
+
+    quoting:
+      database: false
+      schema: false
+      identifier: false
+
+    config:
+      tags: ["bronze"]
+
+    tables:
+
+      # ----------------------------------------------------------------------
+      # raw_anuncios_propiedades — Anuncios inmobiliarios capturados
+      # ----------------------------------------------------------------------
+      - name: raw_anuncios_propiedades
+        identifier: RAW_ANUNCIOS_PROPIEDADES
+        description: >
+          Datos crudos de anuncios inmobiliarios capturados desde portales.
+          Puede contener fechas, precios, booleanos y textos sin normalizar.
+        columns:
+          - name: id_raw
+            description: Identificador técnico de la fila raw.
+            tests:
+              - unique
+              - not_null
+
+          - name: id_anuncio_externo
+            description: Identificador del anuncio en el portal de origen.
+
+          - name: portal_origen
+            description: Portal inmobiliario de origen.
+
+          - name: url_anuncio
+            description: URL del anuncio.
+
+          - name: fecha_captura
+            description: Fecha de captura del anuncio en formato crudo.
+
+          - name: titulo_anuncio
+            description: Título del anuncio.
+
+          - name: descripcion_anuncio
+            description: Descripción original del anuncio.
+
+          - name: precio_publicado
+            description: Precio publicado en bruto. Puede contener símbolo €, puntos, comas o espacios.
+
+          - name: superficie_m2
+            description: Superficie del inmueble en bruto.
+
+          - name: habitaciones
+            description: Número de habitaciones en bruto.
+
+          - name: banos
+            description: Número de baños en bruto.
+
+          - name: planta
+            description: Planta del inmueble.
+
+          - name: ascensor
+            description: Indicador crudo de si el inmueble tiene ascensor.
+
+          - name: estado_inmueble
+            description: Estado del inmueble sin normalizar.
+
+          - name: tipo_inmueble
+            description: Tipo de inmueble sin normalizar.
+
+          - name: direccion_aproximada
+            description: Dirección aproximada del inmueble.
+
+          - name: municipio
+            description: Municipio sin normalizar.
+
+          - name: barrio_zona
+            description: Barrio o zona sin normalizar.
+
+          - name: codigo_postal
+            description: Código postal.
+
+          - name: vendedor_tipo
+            description: Tipo de vendedor sin normalizar.
+
+          - name: estado_anuncio
+            description: Estado del anuncio sin normalizar.
+
+          - name: _cargado_en
+            description: Timestamp crudo de carga del dato.
+
+          - name: _origen
+            description: Origen técnico del dato.
+
+
+      # ----------------------------------------------------------------------
+      # raw_precios_mercado_zona — Precios medios de mercado por zona
+      # ----------------------------------------------------------------------
+      - name: raw_precios_mercado_zona
+        identifier: RAW_PRECIOS_MERCADO_ZONA
+        description: >
+          Datos crudos de precios medios de mercado por zona y tipo de inmueble.
+          Se usarán para comparar el precio publicado contra el mercado.
+        columns:
+          - name: id_raw
+            description: Identificador técnico de la fila raw.
+            tests:
+              - unique
+              - not_null
+
+          - name: fecha_captura
+            description: Fecha de captura del dato en formato crudo.
+
+          - name: municipio
+            description: Municipio sin normalizar.
+
+          - name: barrio_zona
+            description: Barrio o zona sin normalizar.
+
+          - name: tipo_inmueble
+            description: Tipo de inmueble sin normalizar.
+
+          - name: precio_medio_venta_m2
+            description: Precio medio de venta por metro cuadrado en bruto.
+
+          - name: numero_anuncios_venta
+            description: Número de anuncios de venta en bruto.
+
+          - name: fuente_dato
+            description: Fuente original del dato.
+
+          - name: _cargado_en
+            description: Timestamp crudo de carga del dato.
+
+          - name: _origen
+            description: Origen técnico del dato.
+
+
+      # ----------------------------------------------------------------------
+      # raw_costes_reforma — Costes de reforma por provincia, tipo y calidad
+      # ----------------------------------------------------------------------
+      - name: raw_costes_reforma
+        identifier: RAW_COSTES_REFORMA
+        description: >
+          Datos crudos de costes estimados de reforma por provincia, tipo de reforma,
+          categoría de trabajo y calidad de material.
+        columns:
+          - name: id_raw
+            description: Identificador técnico de la fila raw.
+            tests:
+              - unique
+              - not_null
+
+          - name: fecha_captura
+            description: Fecha de captura del coste en formato crudo.
+
+          - name: tipo_reforma
+            description: Tipo de reforma sin normalizar.
+
+          - name: categoria_trabajo
+            description: Categoría del trabajo de reforma sin normalizar.
+
+          - name: descripcion_trabajo
+            description: Descripción del trabajo de reforma.
+
+          - name: calidad_material
+            description: Calidad del material sin normalizar.
+
+          - name: coste_estimado_m2
+            description: Coste estimado por metro cuadrado en bruto.
+
+          - name: unidad_medida
+            description: Unidad de medida del coste.
+
+          - name: fuente_coste
+            description: Fuente del coste de reforma.
+
+          - name: provincia
+            description: Provincia sin normalizar.
+
+          - name: _cargado_en
+            description: Timestamp crudo de carga del dato.
+
+          - name: _origen
+            description: Origen técnico del dato.
+
+
+      # ----------------------------------------------------------------------
+      # raw_operaciones_fix_flip — Análisis internos de operaciones
+      # ----------------------------------------------------------------------
+      - name: raw_operaciones_fix_flip
+        identifier: RAW_OPERACIONES_FIX_FLIP
+        description: >
+          Datos crudos de análisis internos de operaciones Fix & Flip.
+          Se relacionan con los anuncios mediante id_anuncio_externo.
+        columns:
+          - name: id_raw
+            description: Identificador técnico de la fila raw.
+            tests:
+              - unique
+              - not_null
+
+          - name: id_operacion_externa
+            description: Identificador externo de la operación.
+
+          - name: id_anuncio_externo
+            description: Identificador del anuncio analizado.
+
+          - name: fecha_analisis
+            description: Fecha del análisis en formato crudo.
+
+          - name: precio_compra_estimado
+            description: Precio de compra estimado en bruto.
+
+          - name: precio_negociado
+            description: Precio negociado estimado en bruto.
+
+          - name: coste_reforma_estimado
+            description: Coste de reforma estimado en bruto.
+
+          - name: gastos_compra_estimados
+            description: Gastos de compra estimados en bruto.
+
+          - name: precio_venta_estimado
+            description: Precio de venta estimado en bruto.
+
+          - name: tiempo_reforma_estimado_dias
+            description: Tiempo estimado de reforma en días, en bruto.
+
+          - name: tiempo_venta_estimado_dias
+            description: Tiempo estimado de venta en días, en bruto.
+
+          - name: decision_inversion
+            description: Decisión de inversión sin normalizar.
+
+          - name: observaciones
+            description: Observaciones del análisis.
+
+          - name: _cargado_en
+            description: Timestamp crudo de carga del dato.
+
+          - name: _origen
+            description: Origen técnico del dato.
+
+
+      # ----------------------------------------------------------------------
+      # raw_datos_zona — Indicadores socioeconómicos y cualitativos de zona
+      # ----------------------------------------------------------------------
+      - name: raw_datos_zona
+        identifier: RAW_DATOS_ZONA
+        description: >
+          Datos crudos de indicadores socioeconómicos y cualitativos de zonas.
+          Se usarán para analizar el atractivo de inversión por ubicación.
+        columns:
+          - name: id_raw
+            description: Identificador técnico de la fila raw.
+            tests:
+              - unique
+              - not_null
+
+          - name: fecha_captura
+            description: Fecha de captura del dato en formato crudo.
+
+          - name: municipio
+            description: Municipio sin normalizar.
+
+          - name: barrio_zona
+            description: Barrio o zona sin normalizar.
+
+          - name: poblacion
+            description: Población en bruto.
+
+          - name: renta_media
+            description: Renta media en bruto.
+
+          - name: tasa_paro
+            description: Tasa de paro en bruto.
+
+          - name: servicios_cercanos
+            description: Indicador crudo de servicios cercanos.
+
+          - name: transporte_publico
+            description: Indicador crudo de transporte público.
+
+          - name: colegios_cercanos
+            description: Indicador crudo de colegios cercanos.
+
+          - name: zonas_verdes
+            description: Indicador crudo de zonas verdes.
+
+          - name: proyectos_urbanisticos
+            description: Información cruda sobre proyectos urbanísticos.
+
+          - name: fuente_dato
+            description: Fuente original del dato.
+
+          - name: _cargado_en
+            description: Timestamp crudo de carga del dato.
+
+          - name: _origen
+            description: Origen técnico del dato.
