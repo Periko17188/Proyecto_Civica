@@ -61,12 +61,29 @@ models:
       +tags: ["gold"]
 
 
+# CONFIGURACIÓN DE SEEDS
+
+seeds:
+  proyecto_civica:
+    +database: "{{ env_var('DBT_ENVIRONMENTS', 'FAIL') }}_SILVER_DB"
+    +schema: SQL_DATOS
+    +quote_columns: false
+
+    municipios_provincias:
+      +column_types:
+        nombre_municipio: varchar(100)
+        nombre_provincia: varchar(100)
+        comunidad_autonoma: varchar(100)
+        codigo_ine_municipio: varchar(10) # Es varchar porque Almería empieza por "0"
+
+
 # CONFIGURACIÓN DE SNAPSHOTS
 
 snapshots:
-  +transient: false
-  +target_database: "{{ env_var('DBT_ENVIRONMENTS', 'FAIL') }}_SILVER_DB"
-  +target_schema: snapshots
+  proyecto_civica:
+    +transient: false
+    +target_database: "{{ env_var('DBT_ENVIRONMENTS', 'FAIL') }}_SILVER_DB"
+    +target_schema: snapshots
 
 
 # CONFIGURACIÓN DE TESTS

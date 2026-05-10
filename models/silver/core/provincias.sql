@@ -1,8 +1,20 @@
--- Tabla Silver normalizada de provincias.
--- Se crea a partir de las provincias detectadas en los costes de reforma
--- y de los municipios presentes en los datos inmobiliarios.
+-- Tabla Silver core de provincias.
+-- Se crea a partir del seed municipios_provincias y de provincias detectadas
+-- en los costes de reforma.
 
-with provincias_costes as (
+with provincias_seed as (
+
+    select distinct
+        nombre_provincia,
+        comunidad_autonoma
+
+    from {{ ref('municipios_provincias') }}
+
+    where nombre_provincia is not null
+
+),
+
+provincias_costes as (
 
     select distinct
         provincia as nombre_provincia
@@ -13,64 +25,37 @@ with provincias_costes as (
 
 ),
 
-provincias_municipios as (
-
-    select distinct
-        case
-            when municipio in (
-                'Granada',
-                'Maracena',
-                'Armilla',
-                'Albolote',
-                'Churriana de la Vega',
-                'Las Gabias'
-            ) then 'Granada'
-
-            else null
-        end as nombre_provincia
-
-    from {{ ref('stg_anuncios_propiedades') }}
-
-    where municipio is not null
-
-),
-
 union_provincias as (
 
     select nombre_provincia
-    from provincias_costes
+    from provincias_seed
 
     union
 
     select nombre_provincia
-    from provincias_municipios
-    where nombre_provincia is not null
+    from provincias_costes
 
 ),
 
 final as (
 
     select
-        {{ dbt_utils.generate_surrogate_key(['nombre_provincia']) }} as id_provincia,
+        {{ dbt_utils.generate_surrogate_key(['u.nombre_provincia']) }} as id_provincia,
 
-        nombre_provincia,
+        u.nombre_provincia,
 
-        case
-            when nombre_provincia in (
-                'Granada',
-                'Málaga',
-                'Sevilla',
-                'Almería',
-                'Córdoba',
-                'Jaén',
-                'Huelva',
-                'Cádiz'
-            ) then 'Andalucía'
+        coalesce(
+            max(s.comunidad_autonoma),
+            'Desconocido'
+        ) as comunidad_autonoma
 
-            else 'Desconocido'
-        end as comunidad_autonoma
+    from union_provincias u
 
-    from union_provincias
+    left join provincias_seed s
+        on u.nombre_provincia = s.nombre_provincia
+
+    group by
+        u.nombre_provincia
 
 )
 

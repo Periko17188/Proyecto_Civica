@@ -1,0 +1,44 @@
+# _fix_flip__seeds.yml
+# ============================================================================
+# Este archivo documenta y testea los seeds del proyecto.
+#
+# Los seeds son tablas pequeñas en formato CSV que dbt carga en Snowflake.
+# En este proyecto se usan para catálogos manuales estables, como el mapeo
+# municipio → provincia → comunidad autónoma → código INE.
+#
+# El seed municipios_provincias permite:
+#   - evitar CASE manuales en los modelos
+#   - relacionar municipios con provincias
+#   - conservar el código INE como dato de referencia
+#   - hacer el modelo más escalable si aparecen nuevos municipios andaluces
+
+version: 2
+
+seeds:
+  - name: municipios_provincias
+    description: >
+      Catálogo de municipios, provincias, comunidades autónomas y códigos INE
+      usado para enriquecer la capa Silver core. Permite evitar CASE manuales
+      en los modelos de provincias y municipios.
+    columns:
+      - name: nombre_municipio
+        description: Nombre normalizado del municipio usado en el proyecto.
+        tests:
+          - unique
+          - not_null
+
+      - name: nombre_provincia
+        description: Provincia a la que pertenece el municipio.
+        tests:
+          - not_null
+
+      - name: comunidad_autonoma
+        description: Comunidad autónoma de la provincia.
+        tests:
+          - not_null
+
+      - name: codigo_ine_municipio
+        description: Código oficial INE del municipio formado por código de provincia y código de municipio.
+        tests:
+          - unique
+          - not_null
