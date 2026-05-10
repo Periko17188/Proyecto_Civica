@@ -1,0 +1,786 @@
+nombre_municipio,nombre_provincia,comunidad_autonoma,codigo_ine_municipio
+Abla,Almería,Andalucía,04001
+Abrucena,Almería,Andalucía,04002
+Adra,Almería,Andalucía,04003
+Albanchez,Almería,Andalucía,04004
+Alboloduy,Almería,Andalucía,04005
+Albox,Almería,Andalucía,04006
+Alcolea,Almería,Andalucía,04007
+Alcudia de Monteagud,Almería,Andalucía,04009
+Alcóntar,Almería,Andalucía,04008
+Alhabia,Almería,Andalucía,04010
+Alhama de Almería,Almería,Andalucía,04011
+Alicún,Almería,Andalucía,04012
+Almería,Almería,Andalucía,04013
+Almócita,Almería,Andalucía,04014
+Alsodux,Almería,Andalucía,04015
+Antas,Almería,Andalucía,04016
+Arboleas,Almería,Andalucía,04017
+Armuña de Almanzora,Almería,Andalucía,04018
+Bacares,Almería,Andalucía,04019
+Balanegra,Almería,Andalucía,04904
+Bayarque,Almería,Andalucía,04021
+Bayárcal,Almería,Andalucía,04020
+Beires,Almería,Andalucía,04023
+Benahadux,Almería,Andalucía,04024
+Benitagla,Almería,Andalucía,04026
+Benizalón,Almería,Andalucía,04027
+Bentarique,Almería,Andalucía,04028
+Berja,Almería,Andalucía,04029
+Bédar,Almería,Andalucía,04022
+Canjáyar,Almería,Andalucía,04030
+Cantoria,Almería,Andalucía,04031
+Carboneras,Almería,Andalucía,04032
+Castro de Filabres,Almería,Andalucía,04033
+Chercos,Almería,Andalucía,04036
+Chirivel,Almería,Andalucía,04037
+Cuevas del Almanzora,Almería,Andalucía,04035
+Cóbdar,Almería,Andalucía,04034
+Dalías,Almería,Andalucía,04038
+El Ejido,Almería,Andalucía,04902
+Enix,Almería,Andalucía,04041
+Felix,Almería,Andalucía,04043
+Fines,Almería,Andalucía,04044
+Fiñana,Almería,Andalucía,04045
+Fondón,Almería,Andalucía,04046
+Garrucha,Almería,Andalucía,04049
+Gádor,Almería,Andalucía,04047
+Gérgal,Almería,Andalucía,04050
+Huécija,Almería,Andalucía,04051
+Huércal de Almería,Almería,Andalucía,04052
+Huércal-Overa,Almería,Andalucía,04053
+Instinción,Almería,Andalucía,04055
+La Mojonera,Almería,Andalucía,04903
+Laroya,Almería,Andalucía,04056
+Las Tres Villas,Almería,Andalucía,04901
+Laujar de Andarax,Almería,Andalucía,04057
+Los Gallardos,Almería,Andalucía,04048
+Lubrín,Almería,Andalucía,04059
+Lucainena de las Torres,Almería,Andalucía,04060
+Líjar,Almería,Andalucía,04058
+Lúcar,Almería,Andalucía,04061
+Macael,Almería,Andalucía,04062
+María,Almería,Andalucía,04063
+Mojácar,Almería,Andalucía,04064
+Nacimiento,Almería,Andalucía,04065
+Níjar,Almería,Andalucía,04066
+Ohanes,Almería,Andalucía,04067
+Olula de Castro,Almería,Andalucía,04068
+Olula del Río,Almería,Andalucía,04069
+Oria,Almería,Andalucía,04070
+Padules,Almería,Andalucía,04071
+Partaloa,Almería,Andalucía,04072
+Paterna del Río,Almería,Andalucía,04073
+Pechina,Almería,Andalucía,04074
+Pulpí,Almería,Andalucía,04075
+Purchena,Almería,Andalucía,04076
+Rioja,Almería,Andalucía,04078
+Roquetas de Mar,Almería,Andalucía,04079
+Rágol,Almería,Andalucía,04077
+Santa Cruz de Marchena,Almería,Andalucía,04080
+Santa Fe de Mondújar,Almería,Andalucía,04081
+Senés,Almería,Andalucía,04082
+Serón,Almería,Andalucía,04083
+Sierro,Almería,Andalucía,04084
+Somontín,Almería,Andalucía,04085
+Sorbas,Almería,Andalucía,04086
+Suflí,Almería,Andalucía,04087
+Tabernas,Almería,Andalucía,04088
+Taberno,Almería,Andalucía,04089
+Tahal,Almería,Andalucía,04090
+Terque,Almería,Andalucía,04091
+Turre,Almería,Andalucía,04093
+Turrillas,Almería,Andalucía,04094
+Tíjola,Almería,Andalucía,04092
+Uleila del Campo,Almería,Andalucía,04095
+Urrácal,Almería,Andalucía,04096
+Velefique,Almería,Andalucía,04097
+Vera,Almería,Andalucía,04100
+Viator,Almería,Andalucía,04101
+Vélez-Blanco,Almería,Andalucía,04098
+Vélez-Rubio,Almería,Andalucía,04099
+Vícar,Almería,Andalucía,04102
+Zurgena,Almería,Andalucía,04103
+Íllar,Almería,Andalucía,04054
+Alcalá de los Gazules,Cádiz,Andalucía,11001
+Alcalá del Valle,Cádiz,Andalucía,11002
+Algar,Cádiz,Andalucía,11003
+Algeciras,Cádiz,Andalucía,11004
+Algodonales,Cádiz,Andalucía,11005
+Arcos de la Frontera,Cádiz,Andalucía,11006
+Barbate,Cádiz,Andalucía,11007
+Benalup-Casas Viejas,Cádiz,Andalucía,11901
+Benaocaz,Cádiz,Andalucía,11009
+Bornos,Cádiz,Andalucía,11010
+Castellar de la Frontera,Cádiz,Andalucía,11013
+Chiclana de la Frontera,Cádiz,Andalucía,11015
+Chipiona,Cádiz,Andalucía,11016
+Conil de la Frontera,Cádiz,Andalucía,11014
+Cádiz,Cádiz,Andalucía,11012
+El Bosque,Cádiz,Andalucía,11011
+El Gastor,Cádiz,Andalucía,11018
+El Puerto de Santa María,Cádiz,Andalucía,11027
+Espera,Cádiz,Andalucía,11017
+Grazalema,Cádiz,Andalucía,11019
+Jerez de la Frontera,Cádiz,Andalucía,11020
+Jimena de la Frontera,Cádiz,Andalucía,11021
+La Línea de la Concepción,Cádiz,Andalucía,11022
+Los Barrios,Cádiz,Andalucía,11008
+Medina Sidonia,Cádiz,Andalucía,11023
+Olvera,Cádiz,Andalucía,11024
+Paterna de Rivera,Cádiz,Andalucía,11025
+Prado del Rey,Cádiz,Andalucía,11026
+Puerto Real,Cádiz,Andalucía,11028
+Puerto Serrano,Cádiz,Andalucía,11029
+Rota,Cádiz,Andalucía,11030
+San Fernando,Cádiz,Andalucía,11031
+San José del Valle,Cádiz,Andalucía,11902
+San Martín del Tesorillo,Cádiz,Andalucía,11903
+San Roque,Cádiz,Andalucía,11033
+Sanlúcar de Barrameda,Cádiz,Andalucía,11032
+Setenil de las Bodegas,Cádiz,Andalucía,11034
+Tarifa,Cádiz,Andalucía,11035
+Torre Alháquime,Cádiz,Andalucía,11036
+Trebujena,Cádiz,Andalucía,11037
+Ubrique,Cádiz,Andalucía,11038
+Vejer de la Frontera,Cádiz,Andalucía,11039
+Villaluenga del Rosario,Cádiz,Andalucía,11040
+Villamartín,Cádiz,Andalucía,11041
+Zahara,Cádiz,Andalucía,11042
+Adamuz,Córdoba,Andalucía,14001
+Aguilar de la Frontera,Córdoba,Andalucía,14002
+Alcaracejos,Córdoba,Andalucía,14003
+Almedinilla,Córdoba,Andalucía,14004
+Almodóvar del Río,Córdoba,Andalucía,14005
+Añora,Córdoba,Andalucía,14006
+Baena,Córdoba,Andalucía,14007
+Belalcázar,Córdoba,Andalucía,14008
+Belmez,Córdoba,Andalucía,14009
+Benamejí,Córdoba,Andalucía,14010
+Bujalance,Córdoba,Andalucía,14012
+Cabra,Córdoba,Andalucía,14013
+Carcabuey,Córdoba,Andalucía,14015
+Cardeña,Córdoba,Andalucía,14016
+Castro del Río,Córdoba,Andalucía,14019
+Cañete de las Torres,Córdoba,Andalucía,14014
+Conquista,Córdoba,Andalucía,14020
+Córdoba,Córdoba,Andalucía,14021
+Dos Torres,Córdoba,Andalucía,14023
+Doña Mencía,Córdoba,Andalucía,14022
+El Carpio,Córdoba,Andalucía,14018
+El Guijo,Córdoba,Andalucía,14034
+El Viso,Córdoba,Andalucía,14074
+Encinas Reales,Córdoba,Andalucía,14024
+Espejo,Córdoba,Andalucía,14025
+Espiel,Córdoba,Andalucía,14026
+Fernán-Núñez,Córdoba,Andalucía,14027
+Fuente Carreteros,Córdoba,Andalucía,14901
+Fuente Obejuna,Córdoba,Andalucía,14029
+Fuente Palmera,Córdoba,Andalucía,14030
+Fuente la Lancha,Córdoba,Andalucía,14028
+Fuente-Tójar,Córdoba,Andalucía,14031
+Guadalcázar,Córdoba,Andalucía,14033
+Hinojosa del Duque,Córdoba,Andalucía,14035
+Hornachuelos,Córdoba,Andalucía,14036
+Iznájar,Córdoba,Andalucía,14037
+La Carlota,Córdoba,Andalucía,14017
+La Granjuela,Córdoba,Andalucía,14032
+La Guijarrosa,Córdoba,Andalucía,14902
+La Rambla,Córdoba,Andalucía,14057
+La Victoria,Córdoba,Andalucía,14065
+Los Blázquez,Córdoba,Andalucía,14011
+Lucena,Córdoba,Andalucía,14038
+Luque,Córdoba,Andalucía,14039
+Montalbán de Córdoba,Córdoba,Andalucía,14040
+Montemayor,Córdoba,Andalucía,14041
+Montilla,Córdoba,Andalucía,14042
+Montoro,Córdoba,Andalucía,14043
+Monturque,Córdoba,Andalucía,14044
+Moriles,Córdoba,Andalucía,14045
+Nueva Carteya,Córdoba,Andalucía,14046
+Obejo,Córdoba,Andalucía,14047
+Palenciana,Córdoba,Andalucía,14048
+Palma del Río,Córdoba,Andalucía,14049
+Pedro Abad,Córdoba,Andalucía,14050
+Pedroche,Córdoba,Andalucía,14051
+Peñarroya-Pueblonuevo,Córdoba,Andalucía,14052
+Posadas,Córdoba,Andalucía,14053
+Pozoblanco,Córdoba,Andalucía,14054
+Priego de Córdoba,Córdoba,Andalucía,14055
+Puente Genil,Córdoba,Andalucía,14056
+Rute,Córdoba,Andalucía,14058
+San Sebastián de los Ballesteros,Córdoba,Andalucía,14059
+Santa Eufemia,Córdoba,Andalucía,14061
+Santaella,Córdoba,Andalucía,14060
+Torrecampo,Córdoba,Andalucía,14062
+Valenzuela,Córdoba,Andalucía,14063
+Valsequillo,Córdoba,Andalucía,14064
+Villa del Río,Córdoba,Andalucía,14066
+Villafranca de Córdoba,Córdoba,Andalucía,14067
+Villaharta,Córdoba,Andalucía,14068
+Villanueva de Córdoba,Córdoba,Andalucía,14069
+Villanueva del Duque,Córdoba,Andalucía,14070
+Villanueva del Rey,Córdoba,Andalucía,14071
+Villaralto,Córdoba,Andalucía,14072
+Villaviciosa de Córdoba,Córdoba,Andalucía,14073
+Zuheros,Córdoba,Andalucía,14075
+Agrón,Granada,Andalucía,18001
+Alamedilla,Granada,Andalucía,18002
+Albolote,Granada,Andalucía,18003
+Albondón,Granada,Andalucía,18004
+Albuñol,Granada,Andalucía,18006
+Albuñuelas,Granada,Andalucía,18007
+Albuñán,Granada,Andalucía,18005
+Aldeire,Granada,Andalucía,18010
+Alfacar,Granada,Andalucía,18011
+Algarinejo,Granada,Andalucía,18012
+Alhama de Granada,Granada,Andalucía,18013
+Alhendín,Granada,Andalucía,18014
+Alicún de Ortega,Granada,Andalucía,18015
+Almegíjar,Granada,Andalucía,18016
+Almuñécar,Granada,Andalucía,18017
+Alpujarra de la Sierra,Granada,Andalucía,18904
+Alquife,Granada,Andalucía,18018
+Arenas del Rey,Granada,Andalucía,18020
+Armilla,Granada,Andalucía,18021
+Atarfe,Granada,Andalucía,18022
+Baza,Granada,Andalucía,18023
+Beas de Granada,Granada,Andalucía,18024
+Beas de Guadix,Granada,Andalucía,18025
+Benalúa,Granada,Andalucía,18027
+Benalúa de las Villas,Granada,Andalucía,18028
+Benamaurel,Granada,Andalucía,18029
+Bubión,Granada,Andalucía,18032
+Busquístar,Granada,Andalucía,18033
+Bérchules,Granada,Andalucía,18030
+Cacín,Granada,Andalucía,18034
+Calicasas,Granada,Andalucía,18037
+Campotéjar,Granada,Andalucía,18038
+Caniles,Granada,Andalucía,18039
+Capileira,Granada,Andalucía,18042
+Carataunas,Granada,Andalucía,18043
+Castilléjar,Granada,Andalucía,18045
+Castril,Granada,Andalucía,18046
+Cenes de la Vega,Granada,Andalucía,18047
+Chauchina,Granada,Andalucía,18059
+Chimeneas,Granada,Andalucía,18061
+Churriana de la Vega,Granada,Andalucía,18062
+Cijuela,Granada,Andalucía,18048
+Cogollos de Guadix,Granada,Andalucía,18049
+Cogollos de la Vega,Granada,Andalucía,18050
+Colomera,Granada,Andalucía,18051
+Cortes de Baza,Granada,Andalucía,18053
+Cortes y Graena,Granada,Andalucía,18054
+Cuevas del Campo,Granada,Andalucía,18912
+Cádiar,Granada,Andalucía,18035
+Cájar,Granada,Andalucía,18036
+Cástaras,Granada,Andalucía,18044
+Cáñar,Granada,Andalucía,18040
+Cúllar,Granada,Andalucía,18056
+Cúllar Vega,Granada,Andalucía,18057
+Darro,Granada,Andalucía,18063
+Dehesas Viejas,Granada,Andalucía,18065
+Dehesas de Guadix,Granada,Andalucía,18064
+Deifontes,Granada,Andalucía,18066
+Diezma,Granada,Andalucía,18067
+Domingo Pérez de Granada,Granada,Andalucía,18915
+Dílar,Granada,Andalucía,18068
+Dólar,Granada,Andalucía,18069
+Dúdar,Granada,Andalucía,18070
+Dúrcal,Granada,Andalucía,18071
+El Pinar,Granada,Andalucía,18910
+El Valle,Granada,Andalucía,18902
+Escúzar,Granada,Andalucía,18072
+Ferreira,Granada,Andalucía,18074
+Fonelas,Granada,Andalucía,18076
+Fornes,Granada,Andalucía,18077
+Freila,Granada,Andalucía,18078
+Fuente Vaqueros,Granada,Andalucía,18079
+Galera,Granada,Andalucía,18082
+Gobernador,Granada,Andalucía,18083
+Gor,Granada,Andalucía,18085
+Gorafe,Granada,Andalucía,18086
+Granada,Granada,Andalucía,18087
+Guadahortuna,Granada,Andalucía,18088
+Guadix,Granada,Andalucía,18089
+Gualchos,Granada,Andalucía,18093
+Gójar,Granada,Andalucía,18084
+Güevéjar,Granada,Andalucía,18095
+Güéjar Sierra,Granada,Andalucía,18094
+Huélago,Granada,Andalucía,18096
+Huéneja,Granada,Andalucía,18097
+Huéscar,Granada,Andalucía,18098
+Huétor Tájar,Granada,Andalucía,18100
+Huétor Vega,Granada,Andalucía,18101
+Huétor de Santillán,Granada,Andalucía,18099
+Iznalloz,Granada,Andalucía,18105
+Jayena,Granada,Andalucía,18107
+Jete,Granada,Andalucía,18109
+Jun,Granada,Andalucía,18111
+Juviles,Granada,Andalucía,18112
+Játar,Granada,Andalucía,18106
+Jérez del Marquesado,Granada,Andalucía,18108
+La Calahorra,Granada,Andalucía,18114
+La Malahá,Granada,Andalucía,18126
+La Peza,Granada,Andalucía,18154
+La Taha,Granada,Andalucía,18901
+La Zubia,Granada,Andalucía,18193
+Lanjarón,Granada,Andalucía,18116
+Lanteira,Granada,Andalucía,18117
+Las Gabias,Granada,Andalucía,18905
+Lecrín,Granada,Andalucía,18119
+Lentegí,Granada,Andalucía,18120
+Lobras,Granada,Andalucía,18121
+Loja,Granada,Andalucía,18122
+Los Guájares,Granada,Andalucía,18906
+Lugros,Granada,Andalucía,18123
+Láchar,Granada,Andalucía,18115
+Lújar,Granada,Andalucía,18124
+Maracena,Granada,Andalucía,18127
+Marchal,Granada,Andalucía,18128
+Moclín,Granada,Andalucía,18132
+Molvízar,Granada,Andalucía,18133
+Monachil,Granada,Andalucía,18134
+Montefrío,Granada,Andalucía,18135
+Montejícar,Granada,Andalucía,18136
+Montillana,Granada,Andalucía,18137
+Moraleda de Zafayona,Granada,Andalucía,18138
+Morelábor,Granada,Andalucía,18909
+Motril,Granada,Andalucía,18140
+Murtas,Granada,Andalucía,18141
+Nevada,Granada,Andalucía,18903
+Nigüelas,Granada,Andalucía,18143
+Nívar,Granada,Andalucía,18144
+Ogíjares,Granada,Andalucía,18145
+Orce,Granada,Andalucía,18146
+Otívar,Granada,Andalucía,18148
+Padul,Granada,Andalucía,18150
+Pampaneira,Granada,Andalucía,18151
+Pedro Martínez,Granada,Andalucía,18152
+Peligros,Granada,Andalucía,18153
+Pinos Genil,Granada,Andalucía,18157
+Pinos Puente,Granada,Andalucía,18158
+Polopos,Granada,Andalucía,18162
+Polícar,Granada,Andalucía,18161
+Puebla de Don Fadrique,Granada,Andalucía,18164
+Pulianas,Granada,Andalucía,18165
+Purullena,Granada,Andalucía,18167
+Píñar,Granada,Andalucía,18159
+Pórtugos,Granada,Andalucía,18163
+Quéntar,Granada,Andalucía,18168
+Rubite,Granada,Andalucía,18170
+Salar,Granada,Andalucía,18171
+Salobreña,Granada,Andalucía,18173
+Santa Cruz del Comercio,Granada,Andalucía,18174
+Santa Fe,Granada,Andalucía,18175
+Soportújar,Granada,Andalucía,18176
+Sorvilán,Granada,Andalucía,18177
+Torre-Cardela,Granada,Andalucía,18178
+Torrenueva Costa,Granada,Andalucía,18916
+Torvizcón,Granada,Andalucía,18179
+Trevélez,Granada,Andalucía,18180
+Turón,Granada,Andalucía,18181
+Ugíjar,Granada,Andalucía,18182
+Valderrubio,Granada,Andalucía,18914
+Valle del Zalabí,Granada,Andalucía,18907
+Vegas del Genil,Granada,Andalucía,18911
+Ventas de Huelma,Granada,Andalucía,18185
+Villa de Otura,Granada,Andalucía,18149
+Villamena,Granada,Andalucía,18908
+Villanueva Mesía,Granada,Andalucía,18188
+Villanueva de las Torres,Granada,Andalucía,18187
+Válor,Granada,Andalucía,18183
+Vélez de Benaudalla,Granada,Andalucía,18184
+Víznar,Granada,Andalucía,18189
+Zafarraya,Granada,Andalucía,18192
+Zagra,Granada,Andalucía,18913
+Zújar,Granada,Andalucía,18194
+Íllora,Granada,Andalucía,18102
+Ítrabo,Granada,Andalucía,18103
+Órgiva,Granada,Andalucía,18147
+Aljaraque,Huelva,Andalucía,21002
+Almonaster la Real,Huelva,Andalucía,21004
+Almonte,Huelva,Andalucía,21005
+Alosno,Huelva,Andalucía,21006
+Alájar,Huelva,Andalucía,21001
+Aracena,Huelva,Andalucía,21007
+Aroche,Huelva,Andalucía,21008
+Arroyomolinos de León,Huelva,Andalucía,21009
+Ayamonte,Huelva,Andalucía,21010
+Beas,Huelva,Andalucía,21011
+Berrocal,Huelva,Andalucía,21012
+Bollullos Par del Condado,Huelva,Andalucía,21013
+Bonares,Huelva,Andalucía,21014
+Cabezas Rubias,Huelva,Andalucía,21015
+Cala,Huelva,Andalucía,21016
+Calañas,Huelva,Andalucía,21017
+Campofrío,Huelva,Andalucía,21019
+Cartaya,Huelva,Andalucía,21021
+Castaño del Robledo,Huelva,Andalucía,21022
+Cañaveral de León,Huelva,Andalucía,21020
+Chucena,Huelva,Andalucía,21030
+Corteconcepción,Huelva,Andalucía,21024
+Cortegana,Huelva,Andalucía,21025
+Cortelazor,Huelva,Andalucía,21026
+Cumbres Mayores,Huelva,Andalucía,21029
+Cumbres de Enmedio,Huelva,Andalucía,21027
+Cumbres de San Bartolomé,Huelva,Andalucía,21028
+El Almendro,Huelva,Andalucía,21003
+El Campillo,Huelva,Andalucía,21018
+El Cerro de Andévalo,Huelva,Andalucía,21023
+El Granado,Huelva,Andalucía,21037
+Encinasola,Huelva,Andalucía,21031
+Escacena del Campo,Huelva,Andalucía,21032
+Fuenteheridos,Huelva,Andalucía,21033
+Galaroza,Huelva,Andalucía,21034
+Gibraleón,Huelva,Andalucía,21035
+Higuera de la Sierra,Huelva,Andalucía,21038
+Hinojales,Huelva,Andalucía,21039
+Hinojos,Huelva,Andalucía,21040
+Huelva,Huelva,Andalucía,21041
+Isla Cristina,Huelva,Andalucía,21042
+Jabugo,Huelva,Andalucía,21043
+La Granada de Río-Tinto,Huelva,Andalucía,21036
+La Nava,Huelva,Andalucía,21051
+La Palma del Condado,Huelva,Andalucía,21054
+La Zarza-Perrunal,Huelva,Andalucía,21902
+Lepe,Huelva,Andalucía,21044
+Linares de la Sierra,Huelva,Andalucía,21045
+Los Marines,Huelva,Andalucía,21048
+Lucena del Puerto,Huelva,Andalucía,21046
+Manzanilla,Huelva,Andalucía,21047
+Minas de Riotinto,Huelva,Andalucía,21049
+Moguer,Huelva,Andalucía,21050
+Nerva,Huelva,Andalucía,21052
+Niebla,Huelva,Andalucía,21053
+Palos de la Frontera,Huelva,Andalucía,21055
+Paterna del Campo,Huelva,Andalucía,21056
+Paymogo,Huelva,Andalucía,21057
+Puebla de Guzmán,Huelva,Andalucía,21058
+Puerto Moral,Huelva,Andalucía,21059
+Punta Umbría,Huelva,Andalucía,21060
+Rociana del Condado,Huelva,Andalucía,21061
+Rosal de la Frontera,Huelva,Andalucía,21062
+San Bartolomé de la Torre,Huelva,Andalucía,21063
+San Juan del Puerto,Huelva,Andalucía,21064
+San Silvestre de Guzmán,Huelva,Andalucía,21066
+Sanlúcar de Guadiana,Huelva,Andalucía,21065
+Santa Ana la Real,Huelva,Andalucía,21067
+Santa Bárbara de Casa,Huelva,Andalucía,21068
+Santa Olalla del Cala,Huelva,Andalucía,21069
+Trigueros,Huelva,Andalucía,21070
+Valdelarco,Huelva,Andalucía,21071
+Valverde del Camino,Huelva,Andalucía,21072
+Villablanca,Huelva,Andalucía,21073
+Villalba del Alcor,Huelva,Andalucía,21074
+Villanueva de las Cruces,Huelva,Andalucía,21075
+Villanueva de los Castillejos,Huelva,Andalucía,21076
+Villarrasa,Huelva,Andalucía,21077
+Zalamea la Real,Huelva,Andalucía,21078
+Zufre,Huelva,Andalucía,21079
+Albanchez de Mágina,Jaén,Andalucía,23001
+Alcalá la Real,Jaén,Andalucía,23002
+Alcaudete,Jaén,Andalucía,23003
+Aldeaquemada,Jaén,Andalucía,23004
+Andújar,Jaén,Andalucía,23005
+Arjona,Jaén,Andalucía,23006
+Arjonilla,Jaén,Andalucía,23007
+Arquillos,Jaén,Andalucía,23008
+Arroyo del Ojanco,Jaén,Andalucía,23905
+Baeza,Jaén,Andalucía,23009
+Bailén,Jaén,Andalucía,23010
+Baños de la Encina,Jaén,Andalucía,23011
+Beas de Segura,Jaén,Andalucía,23012
+Bedmar y Garcíez,Jaén,Andalucía,23902
+Begíjar,Jaén,Andalucía,23014
+Benatae,Jaén,Andalucía,23016
+Bélmez de la Moraleda,Jaén,Andalucía,23015
+Cabra del Santo Cristo,Jaén,Andalucía,23017
+Cambil,Jaén,Andalucía,23018
+Campillo de Arenas,Jaén,Andalucía,23019
+Canena,Jaén,Andalucía,23020
+Carboneros,Jaén,Andalucía,23021
+Castellar,Jaén,Andalucía,23025
+Castillo de Locubín,Jaén,Andalucía,23026
+Cazalilla,Jaén,Andalucía,23027
+Cazorla,Jaén,Andalucía,23028
+Chiclana de Segura,Jaén,Andalucía,23029
+Chilluévar,Jaén,Andalucía,23030
+Cárcheles,Jaén,Andalucía,23901
+Escañuela,Jaén,Andalucía,23031
+Espeluy,Jaén,Andalucía,23032
+Frailes,Jaén,Andalucía,23033
+Fuensanta de Martos,Jaén,Andalucía,23034
+Fuerte del Rey,Jaén,Andalucía,23035
+Guarromán,Jaén,Andalucía,23039
+Génave,Jaén,Andalucía,23037
+Higuera de Calatrava,Jaén,Andalucía,23041
+Hinojares,Jaén,Andalucía,23042
+Hornos,Jaén,Andalucía,23043
+Huelma,Jaén,Andalucía,23044
+Huesa,Jaén,Andalucía,23045
+Ibros,Jaén,Andalucía,23046
+Iznatoraf,Jaén,Andalucía,23048
+Jabalquinto,Jaén,Andalucía,23049
+Jamilena,Jaén,Andalucía,23051
+Jaén,Jaén,Andalucía,23050
+Jimena,Jaén,Andalucía,23052
+Jódar,Jaén,Andalucía,23053
+La Carolina,Jaén,Andalucía,23024
+La Guardia de Jaén,Jaén,Andalucía,23038
+La Iruela,Jaén,Andalucía,23047
+La Puerta de Segura,Jaén,Andalucía,23072
+Lahiguera,Jaén,Andalucía,23040
+Larva,Jaén,Andalucía,23054
+Linares,Jaén,Andalucía,23055
+Lopera,Jaén,Andalucía,23056
+Los Villares,Jaén,Andalucía,23099
+Lupión,Jaén,Andalucía,23057
+Mancha Real,Jaén,Andalucía,23058
+Marmolejo,Jaén,Andalucía,23059
+Martos,Jaén,Andalucía,23060
+Mengíbar,Jaén,Andalucía,23061
+Montizón,Jaén,Andalucía,23062
+Navas de San Juan,Jaén,Andalucía,23063
+Noalejo,Jaén,Andalucía,23064
+Orcera,Jaén,Andalucía,23065
+Peal de Becerro,Jaén,Andalucía,23066
+Pegalajar,Jaén,Andalucía,23067
+Porcuna,Jaén,Andalucía,23069
+Pozo Alcón,Jaén,Andalucía,23070
+Puente de Génave,Jaén,Andalucía,23071
+Quesada,Jaén,Andalucía,23073
+Rus,Jaén,Andalucía,23074
+Sabiote,Jaén,Andalucía,23075
+Santa Elena,Jaén,Andalucía,23076
+Santiago de Calatrava,Jaén,Andalucía,23077
+Santiago-Pontones,Jaén,Andalucía,23904
+Santisteban del Puerto,Jaén,Andalucía,23079
+Santo Tomé,Jaén,Andalucía,23080
+Segura de la Sierra,Jaén,Andalucía,23081
+Siles,Jaén,Andalucía,23082
+Sorihuela del Guadalimar,Jaén,Andalucía,23084
+Torreblascopedro,Jaén,Andalucía,23085
+Torredelcampo,Jaén,Andalucía,23086
+Torredonjimeno,Jaén,Andalucía,23087
+Torreperogil,Jaén,Andalucía,23088
+Torres,Jaén,Andalucía,23090
+Torres de Albánchez,Jaén,Andalucía,23091
+Valdepeñas de Jaén,Jaén,Andalucía,23093
+Vilches,Jaén,Andalucía,23094
+Villacarrillo,Jaén,Andalucía,23095
+Villanueva de la Reina,Jaén,Andalucía,23096
+Villanueva del Arzobispo,Jaén,Andalucía,23097
+Villardompardo,Jaén,Andalucía,23098
+Villarrodrigo,Jaén,Andalucía,23101
+Villatorres,Jaén,Andalucía,23903
+Úbeda,Jaén,Andalucía,23092
+Alameda,Málaga,Andalucía,29001
+Alcaucín,Málaga,Andalucía,29002
+Alfarnate,Málaga,Andalucía,29003
+Alfarnatejo,Málaga,Andalucía,29004
+Algarrobo,Málaga,Andalucía,29005
+Algatocín,Málaga,Andalucía,29006
+Alhaurín de la Torre,Málaga,Andalucía,29007
+Alhaurín el Grande,Málaga,Andalucía,29008
+Almargen,Málaga,Andalucía,29010
+Almogía,Málaga,Andalucía,29011
+Almáchar,Málaga,Andalucía,29009
+Alozaina,Málaga,Andalucía,29013
+Alpandeire,Málaga,Andalucía,29014
+Antequera,Málaga,Andalucía,29015
+Archidona,Málaga,Andalucía,29017
+Ardales,Málaga,Andalucía,29018
+Arenas,Málaga,Andalucía,29019
+Arriate,Málaga,Andalucía,29020
+Atajate,Málaga,Andalucía,29021
+Benadalid,Málaga,Andalucía,29022
+Benahavís,Málaga,Andalucía,29023
+Benalauría,Málaga,Andalucía,29024
+Benalmádena,Málaga,Andalucía,29025
+Benamargosa,Málaga,Andalucía,29026
+Benamocarra,Málaga,Andalucía,29027
+Benaoján,Málaga,Andalucía,29028
+Benarrabá,Málaga,Andalucía,29029
+Campillos,Málaga,Andalucía,29032
+Canillas de Aceituno,Málaga,Andalucía,29033
+Canillas de Albaida,Málaga,Andalucía,29034
+Carratraca,Málaga,Andalucía,29036
+Cartajima,Málaga,Andalucía,29037
+Casabermeja,Málaga,Andalucía,29039
+Casarabonela,Málaga,Andalucía,29040
+Casares,Málaga,Andalucía,29041
+Cañete la Real,Málaga,Andalucía,29035
+Colmenar,Málaga,Andalucía,29043
+Comares,Málaga,Andalucía,29044
+Cortes de la Frontera,Málaga,Andalucía,29046
+Coín,Málaga,Andalucía,29042
+Cuevas Bajas,Málaga,Andalucía,29047
+Cuevas de San Marcos,Málaga,Andalucía,29049
+Cuevas del Becerro,Málaga,Andalucía,29048
+Cártama,Málaga,Andalucía,29038
+Cómpeta,Málaga,Andalucía,29045
+Cútar,Málaga,Andalucía,29050
+El Borge,Málaga,Andalucía,29030
+El Burgo,Málaga,Andalucía,29031
+Estepona,Málaga,Andalucía,29051
+Faraján,Málaga,Andalucía,29052
+Frigiliana,Málaga,Andalucía,29053
+Fuengirola,Málaga,Andalucía,29054
+Fuente de Piedra,Málaga,Andalucía,29055
+Gaucín,Málaga,Andalucía,29056
+Genalguacil,Málaga,Andalucía,29057
+Guaro,Málaga,Andalucía,29058
+Humilladero,Málaga,Andalucía,29059
+Igualeja,Málaga,Andalucía,29060
+Istán,Málaga,Andalucía,29061
+Iznate,Málaga,Andalucía,29062
+Jimera de Líbar,Málaga,Andalucía,29063
+Jubrique,Málaga,Andalucía,29064
+Júzcar,Málaga,Andalucía,29065
+Macharaviaya,Málaga,Andalucía,29066
+Manilva,Málaga,Andalucía,29068
+Marbella,Málaga,Andalucía,29069
+Mijas,Málaga,Andalucía,29070
+Moclinejo,Málaga,Andalucía,29071
+Mollina,Málaga,Andalucía,29072
+Monda,Málaga,Andalucía,29073
+Montecorto,Málaga,Andalucía,29903
+Montejaque,Málaga,Andalucía,29074
+Málaga,Málaga,Andalucía,29067
+Nerja,Málaga,Andalucía,29075
+Ojén,Málaga,Andalucía,29076
+Parauta,Málaga,Andalucía,29077
+Periana,Málaga,Andalucía,29079
+Pizarra,Málaga,Andalucía,29080
+Pujerra,Málaga,Andalucía,29081
+Rincón de la Victoria,Málaga,Andalucía,29082
+Riogordo,Málaga,Andalucía,29083
+Ronda,Málaga,Andalucía,29084
+Salares,Málaga,Andalucía,29085
+Sayalonga,Málaga,Andalucía,29086
+Sedella,Málaga,Andalucía,29087
+Serrato,Málaga,Andalucía,29904
+Sierra de Yeguas,Málaga,Andalucía,29088
+Teba,Málaga,Andalucía,29089
+Tolox,Málaga,Andalucía,29090
+Torremolinos,Málaga,Andalucía,29901
+Torrox,Málaga,Andalucía,29091
+Totalán,Málaga,Andalucía,29092
+Valle de Abdalajís,Málaga,Andalucía,29093
+Villanueva de Algaidas,Málaga,Andalucía,29095
+Villanueva de Tapia,Málaga,Andalucía,29098
+Villanueva de la Concepción,Málaga,Andalucía,29902
+Villanueva del Rosario,Málaga,Andalucía,29096
+Villanueva del Trabuco,Málaga,Andalucía,29097
+Viñuela,Málaga,Andalucía,29099
+Vélez-Málaga,Málaga,Andalucía,29094
+Yunquera,Málaga,Andalucía,29100
+Álora,Málaga,Andalucía,29012
+Árchez,Málaga,Andalucía,29016
+Aguadulce,Sevilla,Andalucía,41001
+Alanís,Sevilla,Andalucía,41002
+Albaida del Aljarafe,Sevilla,Andalucía,41003
+Alcalá de Guadaíra,Sevilla,Andalucía,41004
+Alcalá del Río,Sevilla,Andalucía,41005
+Alcolea del Río,Sevilla,Andalucía,41006
+Algámitas,Sevilla,Andalucía,41008
+Almadén de la Plata,Sevilla,Andalucía,41009
+Almensilla,Sevilla,Andalucía,41010
+Arahal,Sevilla,Andalucía,41011
+Aznalcázar,Sevilla,Andalucía,41012
+Aznalcóllar,Sevilla,Andalucía,41013
+Badolatosa,Sevilla,Andalucía,41014
+Benacazón,Sevilla,Andalucía,41015
+Bollullos de la Mitación,Sevilla,Andalucía,41016
+Bormujos,Sevilla,Andalucía,41017
+Brenes,Sevilla,Andalucía,41018
+Burguillos,Sevilla,Andalucía,41019
+Camas,Sevilla,Andalucía,41021
+Cantillana,Sevilla,Andalucía,41023
+Carmona,Sevilla,Andalucía,41024
+Carrión de los Céspedes,Sevilla,Andalucía,41025
+Casariche,Sevilla,Andalucía,41026
+Castilblanco de los Arroyos,Sevilla,Andalucía,41027
+Castilleja de Guzmán,Sevilla,Andalucía,41028
+Castilleja de la Cuesta,Sevilla,Andalucía,41029
+Castilleja del Campo,Sevilla,Andalucía,41030
+Cazalla de la Sierra,Sevilla,Andalucía,41032
+Cañada Rosal,Sevilla,Andalucía,41901
+Constantina,Sevilla,Andalucía,41033
+Coria del Río,Sevilla,Andalucía,41034
+Coripe,Sevilla,Andalucía,41035
+Dos Hermanas,Sevilla,Andalucía,41038
+El Castillo de las Guardas,Sevilla,Andalucía,41031
+El Coronil,Sevilla,Andalucía,41036
+El Cuervo de Sevilla,Sevilla,Andalucía,41903
+El Garrobo,Sevilla,Andalucía,41043
+El Madroño,Sevilla,Andalucía,41057
+El Palmar de Troya,Sevilla,Andalucía,41904
+El Pedroso,Sevilla,Andalucía,41073
+El Real de la Jara,Sevilla,Andalucía,41080
+El Ronquillo,Sevilla,Andalucía,41083
+El Rubio,Sevilla,Andalucía,41084
+El Saucejo,Sevilla,Andalucía,41090
+El Viso del Alcor,Sevilla,Andalucía,41102
+Espartinas,Sevilla,Andalucía,41040
+Estepa,Sevilla,Andalucía,41041
+Fuentes de Andalucía,Sevilla,Andalucía,41042
+Gelves,Sevilla,Andalucía,41044
+Gerena,Sevilla,Andalucía,41045
+Gilena,Sevilla,Andalucía,41046
+Gines,Sevilla,Andalucía,41047
+Guadalcanal,Sevilla,Andalucía,41048
+Guillena,Sevilla,Andalucía,41049
+Herrera,Sevilla,Andalucía,41050
+Huévar del Aljarafe,Sevilla,Andalucía,41051
+Isla Mayor,Sevilla,Andalucía,41902
+La Algaba,Sevilla,Andalucía,41007
+La Campana,Sevilla,Andalucía,41022
+La Luisiana,Sevilla,Andalucía,41056
+La Puebla de Cazalla,Sevilla,Andalucía,41077
+La Puebla de los Infantes,Sevilla,Andalucía,41078
+La Puebla del Río,Sevilla,Andalucía,41079
+La Rinconada,Sevilla,Andalucía,41081
+La Roda de Andalucía,Sevilla,Andalucía,41082
+Lantejuela,Sevilla,Andalucía,41052
+Las Cabezas de San Juan,Sevilla,Andalucía,41020
+Las Navas de la Concepción,Sevilla,Andalucía,41066
+Lebrija,Sevilla,Andalucía,41053
+Lora de Estepa,Sevilla,Andalucía,41054
+Lora del Río,Sevilla,Andalucía,41055
+Los Corrales,Sevilla,Andalucía,41037
+Los Molares,Sevilla,Andalucía,41063
+Los Palacios y Villafranca,Sevilla,Andalucía,41069
+Mairena del Alcor,Sevilla,Andalucía,41058
+Mairena del Aljarafe,Sevilla,Andalucía,41059
+Marchena,Sevilla,Andalucía,41060
+Marinaleda,Sevilla,Andalucía,41061
+Martín de la Jara,Sevilla,Andalucía,41062
+Montellano,Sevilla,Andalucía,41064
+Morón de la Frontera,Sevilla,Andalucía,41065
+Olivares,Sevilla,Andalucía,41067
+Osuna,Sevilla,Andalucía,41068
+Palomares del Río,Sevilla,Andalucía,41070
+Paradas,Sevilla,Andalucía,41071
+Pedrera,Sevilla,Andalucía,41072
+Peñaflor,Sevilla,Andalucía,41074
+Pilas,Sevilla,Andalucía,41075
+Pruna,Sevilla,Andalucía,41076
+Salteras,Sevilla,Andalucía,41085
+San Juan de Aznalfarache,Sevilla,Andalucía,41086
+San Nicolás del Puerto,Sevilla,Andalucía,41088
+Sanlúcar la Mayor,Sevilla,Andalucía,41087
+Santiponce,Sevilla,Andalucía,41089
+Sevilla,Sevilla,Andalucía,41091
+Tocina,Sevilla,Andalucía,41092
+Tomares,Sevilla,Andalucía,41093
+Umbrete,Sevilla,Andalucía,41094
+Utrera,Sevilla,Andalucía,41095
+Valencina de la Concepción,Sevilla,Andalucía,41096
+Villamanrique de la Condesa,Sevilla,Andalucía,41097
+Villanueva de San Juan,Sevilla,Andalucía,41100
+Villanueva del Ariscal,Sevilla,Andalucía,41098
+Villanueva del Río y Minas,Sevilla,Andalucía,41099
+Villaverde del Río,Sevilla,Andalucía,41101
+Écija,Sevilla,Andalucía,41039

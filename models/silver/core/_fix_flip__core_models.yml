@@ -29,8 +29,9 @@ models:
 
   - name: provincias
     description: >
-      Tabla Silver normalizada de provincias. Sirve como catálogo geográfico
-      para relacionar municipios, zonas y costes de reforma.
+      Tabla Silver core de provincias. Se construye a partir del seed
+      municipios_provincias y de las provincias detectadas en costes de reforma.
+      Sirve como catálogo geográfico para relacionar municipios, zonas y costes.
     columns:
       - name: id_provincia
         description: Identificador único de la provincia generado con surrogate key.
@@ -51,8 +52,9 @@ models:
 
   - name: municipios
     description: >
-      Tabla Silver normalizada de municipios. Relaciona cada municipio con
-      su provincia correspondiente y sirve como base para crear zonas.
+      Tabla Silver core de municipios. Se construye a partir de los municipios
+      detectados en staging y se enriquece con el seed municipios_provincias
+      para obtener provincia y código INE.
     columns:
       - name: id_municipio
         description: Identificador único del municipio generado con surrogate key.
@@ -73,13 +75,8 @@ models:
         tests:
           - not_null
 
-      - name: nombre_provincia
-        description: Nombre de la provincia asociada al municipio.
-        tests:
-          - not_null
-
       - name: codigo_ine_municipio
-        description: Código INE del municipio. Se deja nulo porque no está disponible en los datos raw.
+        description: Código oficial INE del municipio.
 
   - name: zonas
     description: >
