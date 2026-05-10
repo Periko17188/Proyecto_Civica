@@ -1,0 +1,570 @@
+# _fix_flip__core_models.yml
+# ============================================================================
+# Este archivo documenta y testea las tablas Silver core del proyecto Fix & Flip.
+# No transforma datos directamente: la lógica de transformación está en los .sql.
+#
+# Los modelos core construyen el modelo relacional normalizado a partir de los
+# modelos staging. Aquí ya se separan entidades como provincias, municipios,
+# zonas, propiedades, anuncios, costes de reforma y operaciones.
+#
+# Objetivo de Silver core:
+#   - reducir duplicidades
+#   - crear claves únicas
+#   - relacionar tablas mediante FK
+#   - dejar los datos preparados para construir Gold
+#
+# Aquí definimos:
+#   - description: explicación del modelo o columna
+#   - tests: reglas de calidad ejecutadas por dbt
+#   - unique: valida claves únicas
+#   - not_null: valida campos obligatorios
+#   - relationships: valida relaciones entre tablas
+#   - accepted_values: valida catálogos cerrados
+#
+# Estas tablas sí representan la capa Silver normalizada del proyecto.
+
+version: 2
+
+models:
+
+  - name: provincias
+    description: >
+      Tabla Silver normalizada de provincias. Sirve como catálogo geográfico
+      para relacionar municipios, zonas y costes de reforma.
+    columns:
+      - name: id_provincia
+        description: Identificador único de la provincia generado con surrogate key.
+        tests:
+          - unique
+          - not_null
+
+      - name: nombre_provincia
+        description: Nombre normalizado de la provincia.
+        tests:
+          - unique
+          - not_null
+
+      - name: comunidad_autonoma
+        description: Comunidad autónoma a la que pertenece la provincia.
+        tests:
+          - not_null
+
+  - name: municipios
+    description: >
+      Tabla Silver normalizada de municipios. Relaciona cada municipio con
+      su provincia correspondiente y sirve como base para crear zonas.
+    columns:
+      - name: id_municipio
+        description: Identificador único del municipio generado con surrogate key.
+        tests:
+          - unique
+          - not_null
+
+      - name: id_provincia
+        description: FK hacia la tabla provincias.
+        tests:
+          - relationships:
+              arguments:
+                to: ref('provincias')
+                field: id_provincia
+
+      - name: nombre_municipio
+        description: Nombre normalizado del municipio.
+        tests:
+          - not_null
+
+      - name: nombre_provincia
+        description: Nombre de la provincia asociada al municipio.
+        tests:
+          - not_null
+
+      - name: codigo_ine_municipio
+        description: Código INE del municipio. Se deja nulo porque no está disponible en los datos raw.
+
+  - name: zonas
+    description: >
+      Tabla Silver normalizada de zonas geográficas. Relaciona cada barrio
+      o zona de análisis con su municipio correspondiente.
+    columns:
+      - name: id_zona
+        description: Identificador único de la zona generado con surrogate key.
+        tests:
+          - unique
+          - not_null
+
+      - name: id_municipio
+        description: FK hacia la tabla municipios.
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('municipios')
+                field: id_municipio
+
+      - name: nombre_municipio
+        description: Nombre del municipio al que pertenece la zona.
+        tests:
+          - not_null
+
+      - name: nombre_zona
+        description: Nombre normalizado del barrio o zona.
+        tests:
+          - not_null
+
+      - name: codigo_postal
+        description: Código postal de la zona cuando está disponible.
+
+  - name: portales
+    description: >
+      Tabla Silver normalizada de portales inmobiliarios. Sirve como catálogo
+      para relacionar cada anuncio con su portal de origen.
+    columns:
+      - name: id_portal
+        description: Identificador único del portal generado con surrogate key.
+        tests:
+          - unique
+          - not_null
+
+      - name: nombre_portal
+        description: Nombre normalizado del portal inmobiliario.
+        tests:
+          - unique
+          - not_null
+
+      - name: url_base
+        description: URL principal del portal inmobiliario.
+
+      - name: activo
+        description: Indica si el portal está activo para el análisis.
+        tests:
+          - not_null
+
+  - name: tipos_inmueble
+    description: >
+      Tabla Silver normalizada de tipos de inmueble. Sirve como catálogo
+      para clasificar anuncios y precios de mercado.
+    columns:
+      - name: id_tipo_inmueble
+        description: Identificador único del tipo de inmueble generado con surrogate key.
+        tests:
+          - unique
+          - not_null
+
+      - name: nombre_tipo_inmueble
+        description: Nombre normalizado del tipo de inmueble.
+        tests:
+          - unique
+          - not_null
+
+      - name: descripcion
+        description: Descripción funcional del tipo de inmueble.
+
+  - name: propiedades
+    description: >
+      Tabla Silver normalizada de propiedades. Cada fila representa una propiedad
+      física identificada a partir de zona, tipo de inmueble, dirección aproximada,
+      superficie y planta.
+    columns:
+      - name: id_propiedad
+        description: Identificador único de la propiedad generado con surrogate key.
+        tests:
+          - unique
+          - not_null
+
+      - name: id_zona
+        description: FK hacia la tabla zonas.
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('zonas')
+                field: id_zona
+
+      - name: id_tipo_inmueble
+        description: FK hacia la tabla tipos_inmueble.
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('tipos_inmueble')
+                field: id_tipo_inmueble
+
+      - name: referencia_catastral
+        description: Referencia catastral de la propiedad. Actualmente no disponible en los datos raw.
+
+      - name: direccion_aproximada
+        description: Dirección aproximada de la propiedad.
+
+      - name: superficie_m2
+        description: Superficie de la propiedad en metros cuadrados.
+
+      - name: habitaciones
+        description: Número de habitaciones.
+
+      - name: banos
+        description: Número de baños.
+
+      - name: planta
+        description: Planta del inmueble.
+
+      - name: tiene_ascensor
+        description: Indica si la propiedad tiene ascensor.
+
+      - name: estado_inmueble
+        description: Estado normalizado del inmueble.
+
+      - name: fecha_creacion
+        description: Primera fecha en la que se detectó la propiedad en los datos.
+
+  - name: anuncios_propiedades
+    description: >
+      Tabla Silver normalizada de anuncios inmobiliarios. Cada fila representa
+      una captura histórica de un anuncio en un portal y fecha concreta.
+    columns:
+      - name: id_anuncio
+        description: Identificador único del anuncio capturado, generado con surrogate key.
+        tests:
+          - unique
+          - not_null
+
+      - name: id_propiedad
+        description: FK hacia la tabla propiedades.
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('propiedades')
+                field: id_propiedad
+
+      - name: id_portal
+        description: FK hacia la tabla portales.
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('portales')
+                field: id_portal
+
+      - name: id_anuncio_externo
+        description: Identificador del anuncio en el portal de origen.
+        tests:
+          - not_null
+
+      - name: url_anuncio
+        description: URL del anuncio.
+
+      - name: fecha_captura
+        description: Fecha de captura del anuncio.
+        tests:
+          - not_null
+
+      - name: titulo_anuncio
+        description: Título del anuncio.
+
+      - name: descripcion_anuncio
+        description: Descripción del anuncio.
+
+      - name: precio_publicado
+        description: Precio publicado del anuncio.
+
+      - name: vendedor_tipo
+        description: Tipo de vendedor normalizado.
+
+      - name: estado_anuncio
+        description: Estado normalizado del anuncio.
+
+      - name: cargado_en
+        description: Fecha y hora de carga del dato.
+
+      - name: origen
+        description: Origen técnico del dato.
+
+  - name: precios_mercado_zona
+    description: >
+      Tabla Silver normalizada de precios de mercado por zona. Cada fila
+      representa el precio medio de venta por zona, tipo de inmueble, fuente
+      y fecha de captura.
+    columns:
+      - name: id_precio_mercado
+        description: Identificador único del registro de precio de mercado.
+        tests:
+          - unique
+          - not_null
+
+      - name: id_zona
+        description: FK hacia la tabla zonas.
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('zonas')
+                field: id_zona
+
+      - name: id_tipo_inmueble
+        description: FK hacia la tabla tipos_inmueble.
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('tipos_inmueble')
+                field: id_tipo_inmueble
+
+      - name: fecha_captura
+        description: Fecha de captura del precio de mercado.
+        tests:
+          - not_null
+
+      - name: precio_medio_venta_m2
+        description: Precio medio de venta por metro cuadrado.
+        tests:
+          - not_null
+
+      - name: numero_anuncios_venta
+        description: Número de anuncios usados para calcular el precio medio.
+
+      - name: fuente_dato
+        description: Fuente original del dato de mercado.
+
+      - name: cargado_en
+        description: Fecha y hora de carga del dato.
+
+      - name: origen
+        description: Origen técnico del dato.
+
+  - name: tipos_reforma
+    description: >
+      Tabla Silver core con los tipos de reforma normalizados. Sirve como
+      catálogo para clasificar los costes de reforma.
+    columns:
+      - name: id_tipo_reforma
+        description: Identificador único del tipo de reforma generado con surrogate key.
+        tests:
+          - unique
+          - not_null
+
+      - name: nombre_tipo_reforma
+        description: Nombre normalizado del tipo de reforma.
+        tests:
+          - unique
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['Integral', 'Parcial', 'Lavado de cara']
+
+      - name: descripcion
+        description: Descripción funcional del tipo de reforma.
+
+  - name: categorias_reforma
+    description: >
+      Tabla Silver core con las categorías de reforma normalizadas. Sirve como
+      catálogo para clasificar los trabajos incluidos en los costes de reforma.
+    columns:
+      - name: id_categoria_reforma
+        description: Identificador único de la categoría de reforma generado con surrogate key.
+        tests:
+          - unique
+          - not_null
+
+      - name: nombre_categoria_reforma
+        description: Nombre normalizado de la categoría de reforma.
+        tests:
+          - unique
+          - not_null
+
+      - name: descripcion
+        description: Descripción funcional de la categoría de reforma.
+
+  - name: costes_reforma
+    description: >
+      Tabla Silver core de costes de reforma. Cada fila representa un coste
+      estimado por tipo de reforma, categoría, provincia, calidad de material,
+      fuente y fecha de captura.
+    columns:
+      - name: id_coste_reforma
+        description: Identificador único del coste de reforma.
+        tests:
+          - unique
+          - not_null
+
+      - name: id_tipo_reforma
+        description: FK hacia tipos_reforma.
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('tipos_reforma')
+                field: id_tipo_reforma
+
+      - name: id_categoria_reforma
+        description: FK hacia categorias_reforma.
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('categorias_reforma')
+                field: id_categoria_reforma
+
+      - name: id_provincia
+        description: FK hacia provincias.
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('provincias')
+                field: id_provincia
+
+      - name: fecha_captura
+        description: Fecha de captura del coste de reforma.
+        tests:
+          - not_null
+
+      - name: descripcion_trabajo
+        description: Descripción del trabajo de reforma.
+
+      - name: calidad_material
+        description: Calidad del material usada para estimar el coste.
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['Baja', 'Media', 'Alta']
+
+      - name: coste_estimado_m2
+        description: Coste estimado por metro cuadrado.
+
+      - name: unidad_medida
+        description: Unidad de medida del coste.
+        tests:
+          - accepted_values:
+              arguments:
+                values: ['EUR_M2']
+
+      - name: fuente_coste
+        description: Fuente original del coste.
+
+      - name: cargado_en
+        description: Fecha y hora de carga del dato.
+
+      - name: origen
+        description: Origen técnico del dato.
+
+  - name: operaciones_fix_flip
+    description: >
+      Tabla Silver core de operaciones Fix & Flip. Cada fila representa un
+      análisis de inversión asociado a un anuncio inmobiliario.
+    columns:
+      - name: id_operacion
+        description: Identificador único de la operación generado con surrogate key.
+        tests:
+          - unique
+          - not_null
+
+      - name: id_anuncio
+        description: FK hacia anuncios_propiedades.
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('anuncios_propiedades')
+                field: id_anuncio
+
+      - name: fecha_analisis
+        description: Fecha en la que se realizó el análisis de inversión.
+        tests:
+          - not_null
+
+      - name: precio_compra_estimado
+        description: Precio de compra estimado.
+
+      - name: precio_negociado
+        description: Precio negociado con el vendedor.
+
+      - name: coste_reforma_estimado
+        description: Coste total estimado de reforma.
+
+      - name: gastos_compra_estimados
+        description: Gastos estimados asociados a la compra.
+
+      - name: precio_venta_estimado
+        description: Precio de venta estimado tras la reforma.
+
+      - name: tiempo_reforma_estimado_dias
+        description: Tiempo estimado de reforma en días.
+
+      - name: tiempo_venta_estimado_dias
+        description: Tiempo estimado de venta en días.
+
+      - name: decision_inversion
+        description: Decisión normalizada de inversión.
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['APROBADA', 'RECHAZADA', 'EN_ESTUDIO', 'CANCELADA']
+
+      - name: observaciones
+        description: Observaciones del análisis.
+
+      - name: cargado_en
+        description: Fecha y hora de carga del dato.
+
+      - name: origen
+        description: Origen técnico del dato.
+
+  - name: datos_zona
+    description: >
+      Tabla Silver core de datos de zona. Cada fila representa indicadores
+      socioeconómicos y cualitativos de una zona en una fecha concreta.
+    columns:
+      - name: id_dato_zona
+        description: Identificador único del dato de zona.
+        tests:
+          - unique
+          - not_null
+
+      - name: id_zona
+        description: FK hacia la tabla zonas.
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('zonas')
+                field: id_zona
+
+      - name: fecha_captura
+        description: Fecha de captura del dato de zona.
+        tests:
+          - not_null
+
+      - name: poblacion
+        description: Población de la zona.
+
+      - name: renta_media
+        description: Renta media estimada de la zona.
+
+      - name: tasa_paro
+        description: Tasa de paro estimada de la zona.
+
+      - name: tiene_servicios_cercanos
+        description: Indica si la zona tiene servicios cercanos.
+
+      - name: tiene_transporte_publico
+        description: Indica si la zona tiene transporte público.
+
+      - name: tiene_colegios_cercanos
+        description: Indica si la zona tiene colegios cercanos.
+
+      - name: tiene_zonas_verdes
+        description: Indica si la zona tiene zonas verdes.
+
+      - name: proyectos_urbanisticos
+        description: Información sobre proyectos urbanísticos de la zona.
+
+      - name: fuente_dato
+        description: Fuente original del dato.
+
+      - name: cargado_en
+        description: Fecha y hora de carga del dato.
+
+      - name: origen
+        description: Origen técnico del dato.
