@@ -1,4 +1,6 @@
--- macros/generate_schema_name.sql
+-- Esta macro controla en qué schema se crea cada modelo.
+-- Evita que dbt añada automáticamente el schema personal delante.
+-- Así podemos crear los modelos directamente en SQL_DATOS.
 
 {% macro generate_schema_name(custom_schema_name, node) -%}
 

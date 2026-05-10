@@ -1,4 +1,6 @@
--- macros/generate_database_name.sql
+-- Esta macro controla en qué base de datos se crea cada modelo.
+-- Si el modelo tiene una database personalizada, usa esa.
+-- Si no, usa la database configurada en el entorno de dbt.
 
 {% macro generate_database_name(custom_database_name, node) -%}
 

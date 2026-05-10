@@ -1,0 +1,376 @@
+# _fix_flip__staging_models.yml
+# ============================================================================
+# Este archivo documenta y testea los modelos staging de Silver.
+# No transforma datos directamente: la lógica de transformación está en los .sql.
+#
+# Los modelos staging leen desde Bronze mediante source() y hacen una primera
+# limpieza técnica:
+#   - eliminación de espacios
+#   - conversión de fechas
+#   - conversión de importes y números
+#   - normalización básica de textos
+#   - conversión de booleanos
+#
+# Aquí definimos:
+#   - description: explicación del modelo o columna
+#   - tests: reglas de calidad ejecutadas por dbt
+#   - unique: no permite duplicados
+#   - not_null: no permite valores nulos
+#   - accepted_values: limita una columna a valores permitidos
+#
+# Estos modelos no son todavía el modelo relacional final.
+# Sirven como base limpia para construir las tablas Silver core.
+
+version: 2
+
+models:
+
+  - name: stg_anuncios_propiedades
+    description: >
+      Modelo Silver staging que limpia los anuncios inmobiliarios procedentes de Bronze.
+      Normaliza textos, fechas, precios, superficies, booleanos, municipios, zonas,
+      tipos de inmueble, estado del inmueble y tipo de vendedor.
+    columns:
+      - name: id_raw
+        description: Identificador técnico de la fila raw.
+        tests:
+          - unique
+          - not_null
+
+      - name: id_anuncio_externo
+        description: Identificador del anuncio en el portal de origen.
+        tests:
+          - not_null
+
+      - name: portal_origen
+        description: Portal inmobiliario normalizado.
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['Idealista', 'Fotocasa', 'Solvia', 'Servihabitat', 'Aliseda', 'Yaencontre', 'Pisos.Com', 'Habitaclia']
+
+      - name: url_anuncio
+        description: URL del anuncio.
+
+      - name: fecha_captura
+        description: Fecha normalizada de captura del anuncio.
+        tests:
+          - not_null
+
+      - name: titulo_anuncio
+        description: Título del anuncio.
+
+      - name: descripcion_anuncio
+        description: Descripción original del anuncio.
+
+      - name: precio_publicado
+        description: Precio publicado del anuncio convertido a decimal.
+
+      - name: superficie_m2
+        description: Superficie del inmueble convertida a decimal.
+
+      - name: habitaciones
+        description: Número de habitaciones convertido a número.
+
+      - name: banos
+        description: Número de baños convertido a número.
+
+      - name: planta
+        description: Planta del inmueble.
+
+      - name: tiene_ascensor
+        description: Booleano que indica si el inmueble tiene ascensor.
+
+      - name: estado_inmueble
+        description: Estado del inmueble normalizado.
+        tests:
+          - accepted_values:
+              arguments:
+                values: ['Para reformar', 'Mal estado', 'Reforma parcial', 'Buen estado', 'Desconocido']
+
+      - name: tipo_inmueble
+        description: Tipo de inmueble normalizado.
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['Piso', 'Casa', 'Local', 'Ático', 'Dúplex', 'Estudio', 'Bajo', 'Desconocido']
+
+      - name: direccion_aproximada
+        description: Dirección aproximada del inmueble.
+
+      - name: municipio
+        description: Municipio normalizado.
+        tests:
+          - not_null
+
+      - name: barrio_zona
+        description: Barrio o zona normalizada.
+        tests:
+          - not_null
+
+      - name: codigo_postal
+        description: Código postal del inmueble.
+
+      - name: vendedor_tipo
+        description: Tipo de vendedor normalizado.
+        tests:
+          - accepted_values:
+              arguments:
+                values: ['Particular', 'Inmobiliaria', 'Banco', 'Fondo de inversión', 'Promotor', 'Desconocido']
+
+      - name: estado_anuncio
+        description: Estado del anuncio normalizado.
+        tests:
+          - accepted_values:
+              arguments:
+                values: ['Activo', 'Reservado', 'Bajado de precio', 'Publicado recientemente']
+
+      - name: cargado_en
+        description: Fecha y hora de carga convertida a timestamp.
+
+      - name: origen
+        description: Origen técnico del dato.
+
+
+  - name: stg_precios_mercado_zona
+    description: >
+      Modelo Silver staging que limpia precios medios de mercado por zona,
+      tipo de inmueble y fecha de captura.
+    columns:
+      - name: id_raw
+        description: Identificador técnico de la fila raw.
+        tests:
+          - unique
+          - not_null
+
+      - name: fecha_captura
+        description: Fecha normalizada de captura del precio de mercado.
+        tests:
+          - not_null
+
+      - name: municipio
+        description: Municipio normalizado.
+        tests:
+          - not_null
+
+      - name: barrio_zona
+        description: Barrio o zona normalizada.
+        tests:
+          - not_null
+
+      - name: tipo_inmueble
+        description: Tipo de inmueble normalizado.
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['Piso', 'Casa', 'Local', 'Ático', 'Dúplex', 'Desconocido']
+
+      - name: precio_medio_venta_m2
+        description: Precio medio de venta por metro cuadrado convertido a decimal.
+        tests:
+          - not_null
+
+      - name: numero_anuncios_venta
+        description: Número de anuncios de venta convertido a número.
+
+      - name: fuente_dato
+        description: Fuente original del dato de mercado.
+
+      - name: cargado_en
+        description: Fecha y hora de carga convertida a timestamp.
+
+      - name: origen
+        description: Origen técnico del dato.
+
+
+  - name: stg_costes_reforma
+    description: >
+      Modelo Silver staging que limpia costes de reforma por provincia,
+      tipo de reforma, categoría de trabajo y calidad de material.
+    columns:
+      - name: id_raw
+        description: Identificador técnico de la fila raw.
+        tests:
+          - unique
+          - not_null
+
+      - name: fecha_captura
+        description: Fecha normalizada de captura del coste de reforma.
+        tests:
+          - not_null
+
+      - name: provincia
+        description: Provincia normalizada.
+        tests:
+          - not_null
+
+      - name: tipo_reforma
+        description: Tipo de reforma normalizado.
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['Integral', 'Parcial', 'Lavado de cara']
+
+      - name: categoria_trabajo
+        description: Categoría de trabajo de reforma normalizada.
+        tests:
+          - not_null
+
+      - name: descripcion_trabajo
+        description: Descripción del trabajo de reforma.
+
+      - name: calidad_material
+        description: Calidad del material normalizada.
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['Baja', 'Media', 'Alta']
+
+      - name: coste_estimado_m2
+        description: Coste estimado por metro cuadrado convertido a decimal.
+
+      - name: unidad_medida
+        description: Unidad de medida normalizada.
+        tests:
+          - accepted_values:
+              arguments:
+                values: ['EUR_M2']
+
+      - name: fuente_coste
+        description: Fuente original del coste de reforma.
+
+      - name: cargado_en
+        description: Fecha y hora de carga convertida a timestamp.
+
+      - name: origen
+        description: Origen técnico del dato.
+
+
+  - name: stg_datos_zona
+    description: >
+      Modelo Silver staging que limpia indicadores socioeconómicos y cualitativos
+      de cada zona.
+    columns:
+      - name: id_raw
+        description: Identificador técnico de la fila raw.
+        tests:
+          - unique
+          - not_null
+
+      - name: fecha_captura
+        description: Fecha normalizada de captura del indicador de zona.
+        tests:
+          - not_null
+
+      - name: municipio
+        description: Municipio normalizado.
+        tests:
+          - not_null
+
+      - name: barrio_zona
+        description: Barrio o zona normalizada.
+        tests:
+          - not_null
+
+      - name: poblacion
+        description: Población convertida a número.
+
+      - name: renta_media
+        description: Renta media convertida a decimal.
+
+      - name: tasa_paro
+        description: Tasa de paro convertida a decimal.
+
+      - name: tiene_servicios_cercanos
+        description: Booleano que indica si la zona tiene servicios cercanos.
+
+      - name: tiene_transporte_publico
+        description: Booleano que indica si la zona tiene transporte público.
+
+      - name: tiene_colegios_cercanos
+        description: Booleano que indica si la zona tiene colegios cercanos.
+
+      - name: tiene_zonas_verdes
+        description: Booleano que indica si la zona tiene zonas verdes.
+
+      - name: proyectos_urbanisticos
+        description: Información sobre proyectos urbanísticos en la zona.
+
+      - name: fuente_dato
+        description: Fuente original del dato de zona.
+
+      - name: cargado_en
+        description: Fecha y hora de carga convertida a timestamp.
+
+      - name: origen
+        description: Origen técnico del dato.
+
+
+  - name: stg_operaciones_fix_flip
+    description: >
+      Modelo Silver staging que limpia los análisis internos de operaciones Fix & Flip.
+      Normaliza fechas, importes, tiempos estimados y decisiones de inversión.
+    columns:
+      - name: id_raw
+        description: Identificador técnico de la fila raw.
+        tests:
+          - unique
+          - not_null
+
+      - name: id_operacion_externa
+        description: Identificador externo de la operación.
+        tests:
+          - not_null
+
+      - name: id_anuncio_externo
+        description: Identificador externo del anuncio analizado.
+        tests:
+          - not_null
+
+      - name: fecha_analisis
+        description: Fecha normalizada del análisis de inversión.
+        tests:
+          - not_null
+
+      - name: precio_compra_estimado
+        description: Precio de compra estimado convertido a decimal.
+
+      - name: precio_negociado
+        description: Precio negociado convertido a decimal.
+
+      - name: coste_reforma_estimado
+        description: Coste estimado de reforma convertido a decimal.
+
+      - name: gastos_compra_estimados
+        description: Gastos de compra estimados convertidos a decimal.
+
+      - name: precio_venta_estimado
+        description: Precio de venta estimado convertido a decimal.
+
+      - name: tiempo_reforma_estimado_dias
+        description: Tiempo estimado de reforma en días.
+
+      - name: tiempo_venta_estimado_dias
+        description: Tiempo estimado de venta en días.
+
+      - name: decision_inversion
+        description: Decisión de inversión normalizada.
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['APROBADA', 'RECHAZADA', 'EN_ESTUDIO', 'CANCELADA']
+
+      - name: observaciones
+        description: Observaciones del análisis.
+
+      - name: cargado_en
+        description: Fecha y hora de carga convertida a timestamp.
+
+      - name: origen
+        description: Origen técnico del dato.
