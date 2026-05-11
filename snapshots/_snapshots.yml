@@ -1,0 +1,41 @@
+# _snapshots.yml
+# ============================================================================
+# Este archivo documenta y testea los snapshots del proyecto Fix & Flip.
+#
+# Los snapshots permiten guardar histórico de cambios usando SCD Tipo 2.
+# dbt añade columnas técnicas como dbt_valid_from, dbt_valid_to,
+# dbt_scd_id y dbt_updated_at.
+#
+# En este proyecto se usa un snapshot sobre anuncios inmobiliarios para
+# conservar cambios de precio, estado del anuncio y tipo de vendedor.
+
+version: 2
+
+snapshots:
+  - name: snp_anuncios_propiedades
+    description: >
+      Snapshot histórico de anuncios inmobiliarios. Permite conservar cambios
+      relevantes de negocio como precio publicado, estado del anuncio y tipo
+      de vendedor.
+    columns:
+      - name: id_anuncio_negocio
+        description: Clave estable del anuncio formada por portal y anuncio externo.
+        tests:
+          - not_null
+
+      - name: dbt_scd_id
+        description: Identificador técnico único de cada versión del registro.
+        tests:
+          - unique
+          - not_null
+
+      - name: dbt_valid_from
+        description: Fecha desde la que esta versión del anuncio es válida.
+        tests:
+          - not_null
+
+      - name: dbt_valid_to
+        description: Fecha hasta la que esta versión fue válida. Si es null, es la versión vigente.
+
+      - name: dbt_is_deleted
+        description: Indica si el registro representa un borrado físico detectado por hard_deletes.
