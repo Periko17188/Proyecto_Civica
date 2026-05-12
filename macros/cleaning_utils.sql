@@ -6,32 +6,46 @@
 {% macro clean_timestamp(campo) -%}
 
 coalesce(
-    try_to_timestamp_ntz({{ campo }}),
     try_to_timestamp_ntz({{ campo }}, 'YYYY-MM-DD HH24:MI:SS'),
     try_to_timestamp_ntz({{ campo }}, 'YYYY/MM/DD HH24:MI:SS'),
     try_to_timestamp_ntz(replace({{ campo }}, ' UTC', ''), 'YYYY-MM-DD HH24:MI:SS'),
-    try_to_timestamp_ntz(replace(replace({{ campo }}, 'T', ' '), 'Z', ''), 'YYYY-MM-DD HH24:MI:SS')
+    try_to_timestamp_ntz(replace(replace({{ campo }}, 'T', ' '), 'Z', ''), 'YYYY-MM-DD HH24:MI:SS'),
+    try_to_timestamp_ntz({{ campo }})
 )
 
 {%- endmacro %}
 
 
 {% macro clean_date(campo_fecha, campo_respaldo_timestamp=none) -%}
-
 coalesce(
-    try_to_date({{ campo_fecha }}, 'YYYY-MM-DD'),
-    try_to_date({{ campo_fecha }}, 'YYYY-M-DD'),
-    try_to_date({{ campo_fecha }}, 'DD/MM/YYYY'),
-    try_to_date({{ campo_fecha }}, 'DD-MM-YYYY'),
-    try_to_date({{ campo_fecha }}, 'YYYY/MM/DD'),
-    try_to_date({{ campo_fecha }}, 'YYYYMMDD'),
-    try_to_date({{ campo_fecha }}, 'DD-MON-YYYY')
-
+    case
+        when {{ campo_fecha }} is null then null
+        when nullif(trim({{ campo_fecha }}), '') is null then null
+        when regexp_like(trim({{ campo_fecha }}), '^[0-9]{8}$')
+            then try_to_date(trim({{ campo_fecha }}), 'YYYYMMDD')
+        -- Formatos DD/MM/YY y DD-MM-YY → reconstruir con 20 delante
+        when regexp_like(trim({{ campo_fecha }}), '^[0-9]{2}[/][0-9]{2}[/][0-9]{2}$')
+            then try_to_date(
+                substr(trim({{ campo_fecha }}), 1, 6) || '20' || substr(trim({{ campo_fecha }}), 7, 2),
+                'DD/MM/YYYY'
+            )
+        when regexp_like(trim({{ campo_fecha }}), '^[0-9]{2}[-][0-9]{2}[-][0-9]{2}$')
+            then try_to_date(
+                substr(trim({{ campo_fecha }}), 1, 6) || '20' || substr(trim({{ campo_fecha }}), 7, 2),
+                'DD-MM-YYYY'
+            )
+        else null
+    end,
+    try_to_date(trim({{ campo_fecha }}), 'YYYY-MM-DD'),
+    try_to_date(trim({{ campo_fecha }}), 'YYYY-M-DD'),
+    try_to_date(trim({{ campo_fecha }}), 'YYYY/MM/DD'),
+    try_to_date(trim({{ campo_fecha }}), 'DD/MM/YYYY'),
+    try_to_date(trim({{ campo_fecha }}), 'DD-MM-YYYY'),
+    try_to_date(trim({{ campo_fecha }}), 'DD-MON-YYYY')
     {%- if campo_respaldo_timestamp is not none -%}
         , to_date({{ clean_timestamp(campo_respaldo_timestamp) }})
     {%- endif -%}
 )
-
 {%- endmacro %}
 
 
