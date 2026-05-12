@@ -333,3 +333,444 @@ models:
 
       - name: descripcion_categoria_reforma
         description: Descripción funcional de la categoría de reforma.
+
+
+  - name: fct_precios_mercado_zona
+    description: >
+      Tabla de hechos Gold para analizar precios medios de mercado por zona,
+      tipo de inmueble y fecha de captura. Se materializa como incremental para
+      procesar nuevas capturas sin reconstruir toda la tabla.
+    columns:
+      - name: id_precio_mercado
+        description: Identificador único del registro de precio de mercado.
+        tests:
+          - unique
+          - not_null
+
+      - name: fecha_captura
+        description: Fecha natural de captura del precio de mercado.
+        tests:
+          - not_null
+
+      - name: id_fecha_captura
+        description: FK hacia dim_fecha.
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_fecha')
+                field: id_fecha
+
+      - name: id_ubicacion
+        description: FK hacia dim_ubicacion.
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_ubicacion')
+                field: id_ubicacion
+
+      - name: id_tipo_inmueble
+        description: FK hacia dim_tipo_inmueble.
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_tipo_inmueble')
+                field: id_tipo_inmueble
+
+      - name: precio_medio_venta_m2
+        description: Precio medio de venta por metro cuadrado.
+        tests:
+          - not_null
+
+      - name: numero_anuncios_venta
+        description: Número de anuncios usados para calcular el precio medio.
+
+      - name: fuente_dato
+        description: Fuente original del dato.
+
+      - name: cargado_en
+        description: Fecha y hora de carga del dato.
+
+      - name: origen
+        description: Origen técnico del dato.
+
+
+  - name: fct_indicadores_zona
+    description: >
+      Tabla de hechos Gold para analizar indicadores de zona como población,
+      renta media, tasa de paro y disponibilidad de servicios. Se materializa
+      como incremental para procesar nuevas capturas sin reconstruir toda la tabla.
+    columns:
+      - name: id_dato_zona
+        description: Identificador único del registro de indicadores de zona.
+        tests:
+          - unique
+          - not_null
+
+      - name: fecha_captura
+        description: Fecha natural de captura del dato de zona.
+        tests:
+          - not_null
+
+      - name: id_fecha_captura
+        description: FK hacia dim_fecha.
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_fecha')
+                field: id_fecha
+
+      - name: id_ubicacion
+        description: FK hacia dim_ubicacion.
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_ubicacion')
+                field: id_ubicacion
+
+      - name: poblacion
+        description: Población estimada de la zona.
+
+      - name: renta_media
+        description: Renta media estimada de la zona.
+
+      - name: tasa_paro
+        description: Tasa de paro estimada de la zona.
+
+      - name: tiene_servicios_cercanos
+        description: Indica si la zona tiene servicios cercanos.
+
+      - name: tiene_transporte_publico
+        description: Indica si la zona tiene transporte público.
+
+      - name: tiene_colegios_cercanos
+        description: Indica si la zona tiene colegios cercanos.
+
+      - name: tiene_zonas_verdes
+        description: Indica si la zona tiene zonas verdes.
+
+      - name: numero_servicios_disponibles
+        description: Número de indicadores positivos de servicios disponibles en la zona.
+        tests:
+          - not_null
+
+      - name: puntuacion_atractivo_zona
+        description: >
+          Puntuación calculada en dbt para estimar el atractivo de una zona.
+          Combina disponibilidad de servicios, renta media y tasa de paro.
+        tests:
+          - not_null
+
+      - name: proyectos_urbanisticos
+        description: Información sobre proyectos urbanísticos de la zona.
+
+      - name: fuente_dato
+        description: Fuente original del dato.
+
+      - name: cargado_en
+        description: Fecha y hora de carga del dato.
+
+      - name: origen
+        description: Origen técnico del dato.
+
+
+  - name: fct_costes_reforma
+    description: >
+      Tabla de hechos Gold para analizar costes estimados de reforma por fecha,
+      provincia, tipo de reforma, categoría de trabajo y calidad del material.
+      Se materializa como incremental para procesar nuevas capturas sin reconstruir
+      toda la tabla.
+    columns:
+      - name: id_coste_reforma
+        description: Identificador único del registro de coste de reforma.
+        tests:
+          - unique
+          - not_null
+
+      - name: fecha_captura
+        description: Fecha natural de captura del coste de reforma.
+        tests:
+          - not_null
+
+      - name: id_fecha_captura
+        description: FK hacia dim_fecha.
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_fecha')
+                field: id_fecha
+
+      - name: id_reforma
+        description: FK hacia dim_reforma.
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_reforma')
+                field: id_reforma
+
+      - name: id_provincia
+        description: FK hacia dim_provincia.
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_provincia')
+                field: id_provincia
+
+      - name: descripcion_trabajo
+        description: Descripción del trabajo de reforma.
+
+      - name: coste_estimado_m2
+        description: Coste estimado de reforma por metro cuadrado.
+        tests:
+          - not_null
+
+      - name: unidad_medida
+        description: Unidad de medida del coste.
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['EUR_M2']
+
+      - name: fuente_coste
+        description: Fuente original del coste.
+
+      - name: cargado_en
+        description: Fecha y hora de carga del dato.
+
+      - name: origen
+        description: Origen técnico del dato.
+
+
+  - name: fct_oportunidades_fix_flip
+    description: >
+      Tabla de hechos Gold para analizar oportunidades Fix & Flip. Parte de todos
+      los anuncios capturados y añade, cuando existe, el análisis interno de inversión.
+      Si no existe operación, calcula un preanálisis automático usando precio publicado,
+      precio de mercado, indicadores de zona y coste medio de reforma.
+      La granularidad es una fila por anuncio capturado.
+    columns:
+      - name: id_oportunidad
+        description: Identificador único de la oportunidad basado en el anuncio capturado.
+        tests:
+          - unique
+          - not_null
+
+      - name: id_anuncio
+        description: Identificador del anuncio Silver usado como base de la oportunidad.
+        tests:
+          - not_null
+
+      - name: id_operacion
+        description: Identificador de la operación si el anuncio ha sido analizado internamente.
+
+      - name: id_propiedad
+        description: FK hacia dim_propiedad.
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_propiedad')
+                field: id_propiedad
+
+      - name: id_ubicacion
+        description: FK hacia dim_ubicacion.
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_ubicacion')
+                field: id_ubicacion
+
+      - name: id_tipo_inmueble
+        description: FK hacia dim_tipo_inmueble.
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_tipo_inmueble')
+                field: id_tipo_inmueble
+
+      - name: id_portal
+        description: FK hacia dim_portal.
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_portal')
+                field: id_portal
+
+      - name: id_fecha_captura
+        description: FK hacia dim_fecha para la fecha de captura del anuncio.
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_fecha')
+                field: id_fecha
+
+      - name: id_fecha_analisis
+        description: FK hacia dim_fecha para la fecha de análisis interno, si existe.
+
+      - name: id_decision
+        description: FK hacia dim_decision_inversion.
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_decision_inversion')
+                field: id_decision
+
+      - name: fecha_captura
+        description: Fecha natural de captura del anuncio.
+        tests:
+          - not_null
+
+      - name: fecha_analisis
+        description: Fecha natural del análisis interno, si existe.
+
+      - name: fecha_precio_mercado
+        description: Fecha del precio de mercado utilizado para comparar la oportunidad.
+
+      - name: fecha_indicador_zona
+        description: Fecha del indicador de zona utilizado en el score.
+
+      - name: fecha_coste_reforma
+        description: Fecha del coste medio de reforma utilizado en el preanálisis.
+
+      - name: id_anuncio_externo
+        description: Identificador externo del anuncio en el portal de origen.
+
+      - name: url_anuncio
+        description: URL del anuncio.
+
+      - name: titulo_anuncio
+        description: Título del anuncio.
+
+      - name: vendedor_tipo
+        description: Tipo de vendedor del anuncio.
+
+      - name: estado_anuncio
+        description: Estado del anuncio.
+
+      - name: tipo_analisis
+        description: Indica si la fila procede de análisis interno o preanálisis automático.
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['ANALISIS_INTERNO', 'PREANALISIS_AUTOMATICO']
+
+      - name: decision_inversion
+        description: Decisión de inversión asociada a la oportunidad.
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['NO_ANALIZADO', 'EN_ESTUDIO', 'APROBADA', 'RECHAZADA', 'CANCELADA']
+
+      - name: observaciones
+        description: Observaciones del análisis interno, si existen.
+
+      - name: precio_publicado
+        description: Precio publicado del anuncio.
+
+      - name: superficie_m2
+        description: Superficie de la propiedad en metros cuadrados.
+
+      - name: precio_publicado_m2
+        description: Precio publicado por metro cuadrado.
+
+      - name: precio_medio_venta_m2
+        description: Precio medio de mercado por metro cuadrado para la zona y tipo de inmueble.
+
+      - name: valor_mercado_estimado
+        description: Valor de mercado estimado calculado como precio medio m2 por superficie.
+
+      - name: descuento_vs_mercado_pct
+        description: Porcentaje de descuento frente al valor de mercado estimado.
+
+      - name: numero_anuncios_mercado
+        description: Número de anuncios usados como referencia para el precio medio de mercado.
+
+      - name: fuente_precio_mercado
+        description: Fuente del precio medio de mercado utilizado.
+
+      - name: coste_medio_reforma_m2
+        description: Coste medio de reforma por metro cuadrado usado en preanálisis automático.
+
+      - name: precio_compra_estimado
+        description: Precio de compra estimado procedente del análisis interno.
+
+      - name: precio_negociado
+        description: Precio negociado procedente del análisis interno.
+
+      - name: precio_compra_base
+        description: >
+          Precio base usado para calcular la inversión total. En análisis interno
+          usa precio negociado o estimado; en preanálisis automático usa precio publicado.
+
+      - name: coste_reforma_estimado
+        description: >
+          Coste estimado de reforma. En análisis interno viene de operaciones;
+          en preanálisis automático se calcula con coste medio de reforma por m2.
+
+      - name: gastos_compra_estimados
+        description: >
+          Gastos estimados de compra. En análisis interno vienen de operaciones;
+          en preanálisis automático se estiman como el 10% del precio publicado.
+
+      - name: precio_venta_estimado
+        description: >
+          Precio estimado de venta tras la reforma. En análisis interno viene de operaciones;
+          en preanálisis automático se estima con el valor de mercado.
+
+      - name: inversion_total_estimada
+        description: Suma de precio de compra base, coste de reforma y gastos de compra.
+
+      - name: beneficio_estimado
+        description: Diferencia entre precio de venta estimado e inversión total estimada.
+
+      - name: rentabilidad_estimada_pct
+        description: Rentabilidad estimada sobre la inversión total.
+
+      - name: margen_sobre_venta_pct
+        description: Margen estimado sobre el precio de venta.
+
+      - name: tiempo_reforma_estimado_dias
+        description: Tiempo estimado de reforma en días, si existe análisis interno.
+
+      - name: tiempo_venta_estimado_dias
+        description: Tiempo estimado de venta en días, si existe análisis interno.
+
+      - name: tiempo_total_estimado_dias
+        description: Suma del tiempo estimado de reforma y venta.
+
+      - name: puntuacion_atractivo_zona
+        description: Puntuación de atractivo de zona calculada a partir de servicios, renta y paro.
+
+      - name: numero_servicios_disponibles
+        description: Número de indicadores positivos de servicios disponibles en la zona.
+
+      - name: score_oportunidad
+        description: >
+          Score calculado en dbt de 0 a 10. Combina descuento frente al mercado,
+          rentabilidad estimada, tiempo total estimado y atractivo de zona.
+        tests:
+          - not_null
+
+      - name: cumple_rentabilidad_objetivo
+        description: Indica si la oportunidad alcanza la rentabilidad objetivo del 20%.
+
+      - name: cargado_en
+        description: Fecha y hora usada para controlar la carga incremental.
+
+      - name: origen
+        description: Origen técnico del dato.
