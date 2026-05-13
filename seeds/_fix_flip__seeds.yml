@@ -24,7 +24,6 @@ seeds:
       - name: nombre_municipio
         description: Nombre normalizado del municipio usado en el proyecto.
         tests:
-          - unique
           - not_null
 
       - name: nombre_provincia

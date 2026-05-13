@@ -33,10 +33,11 @@ anuncios_ultimos as (
         id_anuncio,
         id_anuncio_externo,
         fecha_captura,
+        cargado_en,
 
         row_number() over (
             partition by id_anuncio_externo
-            order by fecha_captura desc
+            order by fecha_captura desc, cargado_en desc
         ) as rn
 
     from {{ ref('anuncios_propiedades') }}
