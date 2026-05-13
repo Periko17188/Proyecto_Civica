@@ -428,10 +428,13 @@ models:
 
       - name: coste_estimado_m2
         description: Coste estimado por metro cuadrado.
+        tests:
+          - not_null
 
       - name: unidad_medida
         description: Unidad de medida del coste.
         tests:
+          - not_null
           - accepted_values:
               arguments:
                 values: ['EUR_M2']

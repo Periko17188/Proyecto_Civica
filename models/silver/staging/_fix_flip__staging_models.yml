@@ -95,7 +95,7 @@ models:
           - not_null
           - accepted_values:
               arguments:
-                values: ['Piso', 'Casa', 'Local', 'Ático', 'Dúplex', 'Estudio', 'Bajo', 'Desconocido']
+                values: ['Piso', 'Casa', 'Local', 'Ático', 'Dúplex', 'Desconocido']
 
       - name: direccion_aproximada
         description: Dirección aproximada del inmueble.
@@ -233,10 +233,13 @@ models:
 
       - name: coste_estimado_m2
         description: Coste estimado por metro cuadrado convertido a decimal.
+        tests:
+          - not_null
 
       - name: unidad_medida
         description: Unidad de medida normalizada.
         tests:
+          - not_null
           - accepted_values:
               arguments:
                 values: ['EUR_M2']

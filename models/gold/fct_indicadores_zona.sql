@@ -88,8 +88,7 @@ final as (
         s.fecha_captura,
         f.id_fecha as id_fecha_captura,
 
-        -- En dim_ubicacion usamos id_zona como id_ubicacion
-        s.id_zona as id_ubicacion,
+        u.id_ubicacion,
 
         s.poblacion,
         s.renta_media,
@@ -117,6 +116,9 @@ final as (
 
     inner join {{ ref('dim_fecha') }} f
         on to_date(s.fecha_captura) = f.fecha
+
+    inner join {{ ref('dim_ubicacion') }} u
+        on s.id_zona = u.id_ubicacion
 
 )
 

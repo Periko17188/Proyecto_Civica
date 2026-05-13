@@ -86,6 +86,8 @@ final as (
        and coalesce(e.superficie_m2, -1) = coalesce(pr.superficie_m2, -1)
        and coalesce(e.planta, 'SIN_PLANTA') = coalesce(pr.planta, 'SIN_PLANTA')
 
+    -- Se descartan anuncios que no pueden relacionarse con una propiedad
+    -- o portal válido, para mantener integridad referencial en Silver.
     where pr.id_propiedad is not null
       and e.id_portal is not null
 

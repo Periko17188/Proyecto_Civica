@@ -31,6 +31,14 @@ sources:
 
     config:
       tags: ["bronze"]
+      freshness:
+        warn_after:
+          count: 30
+          period: day
+        error_after:
+          count: 60
+          period: day
+      loaded_at_field: "try_to_timestamp_ntz(_cargado_en)"
 
     tables:
 
