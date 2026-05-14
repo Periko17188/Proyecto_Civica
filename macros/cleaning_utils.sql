@@ -17,35 +17,45 @@ coalesce(
 
 
 {% macro clean_date(campo_fecha, campo_respaldo_timestamp=none) -%}
+
 coalesce(
     case
         when {{ campo_fecha }} is null then null
         when nullif(trim({{ campo_fecha }}), '') is null then null
+
+        -- Formato YYYYMMDD: 20250101
         when regexp_like(trim({{ campo_fecha }}), '^[0-9]{8}$')
             then try_to_date(trim({{ campo_fecha }}), 'YYYYMMDD')
-        -- Formatos DD/MM/YY y DD-MM-YY → reconstruir con 20 delante
+
+        -- Formato DD/MM/YY: 01/01/25 -> 2025-01-01
         when regexp_like(trim({{ campo_fecha }}), '^[0-9]{2}[/][0-9]{2}[/][0-9]{2}$')
             then try_to_date(
                 substr(trim({{ campo_fecha }}), 1, 6) || '20' || substr(trim({{ campo_fecha }}), 7, 2),
                 'DD/MM/YYYY'
             )
+
+        -- Formato DD-MM-YY: 01-01-25 -> 2025-01-01
         when regexp_like(trim({{ campo_fecha }}), '^[0-9]{2}[-][0-9]{2}[-][0-9]{2}$')
             then try_to_date(
                 substr(trim({{ campo_fecha }}), 1, 6) || '20' || substr(trim({{ campo_fecha }}), 7, 2),
                 'DD-MM-YYYY'
             )
+
         else null
     end,
+
     try_to_date(trim({{ campo_fecha }}), 'YYYY-MM-DD'),
     try_to_date(trim({{ campo_fecha }}), 'YYYY-M-DD'),
     try_to_date(trim({{ campo_fecha }}), 'YYYY/MM/DD'),
     try_to_date(trim({{ campo_fecha }}), 'DD/MM/YYYY'),
     try_to_date(trim({{ campo_fecha }}), 'DD-MM-YYYY'),
     try_to_date(trim({{ campo_fecha }}), 'DD-MON-YYYY')
+
     {%- if campo_respaldo_timestamp is not none -%}
         , to_date({{ clean_timestamp(campo_respaldo_timestamp) }})
     {%- endif -%}
 )
+
 {%- endmacro %}
 
 
@@ -54,11 +64,38 @@ coalesce(
 try_to_decimal(
     case
         when {{ campo }} is null then null
-        when regexp_like({{ campo }}, '.*,.*')
+        when nullif(trim({{ campo }}), '') is null then null
+
+        -- Europeo con miles y coma decimal: 186.500,50 € -> 186500.50
+        when regexp_like(trim({{ campo }}), '^[^0-9-]*[0-9]{1,3}([.][0-9]{3})+[,][0-9]+[^0-9]*$')
             then replace(
                     replace(
-                        regexp_replace({{ campo }}, '[^0-9,.-]', ''), '.', ''), ',', '.')
-        else regexp_replace({{ campo }}, '[^0-9.-]', '')
+                        regexp_replace(trim({{ campo }}), '[^0-9,.-]', ''),
+                        '.',
+                        ''
+                    ),
+                    ',',
+                    '.'
+                 )
+
+        -- Europeo con miles sin decimales: 186.500 € -> 186500
+        when regexp_like(trim({{ campo }}), '^[^0-9-]*[0-9]{1,3}([.][0-9]{3})+[^0-9]*$')
+            then replace(
+                    regexp_replace(trim({{ campo }}), '[^0-9.-]', ''),
+                    '.',
+                    ''
+                 )
+
+        -- Decimal con coma: 186500,50 -> 186500.50
+        when regexp_like(trim({{ campo }}), '.*,.*')
+            then replace(
+                    regexp_replace(trim({{ campo }}), '[^0-9,.-]', ''),
+                    ',',
+                    '.'
+                 )
+
+        -- Formato estándar: 186500.50 o 186500
+        else regexp_replace(trim({{ campo }}), '[^0-9.-]', '')
     end,
     {{ precision }},
     {{ scale }}
