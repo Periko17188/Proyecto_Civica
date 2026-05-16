@@ -765,6 +765,10 @@ models:
           rentabilidad estimada, tiempo total estimado y atractivo de zona.
         tests:
           - not_null
+          - dbt_expectations.expect_column_values_to_be_between:
+              arguments:
+                min_value: 0
+                max_value: 10
 
       - name: cumple_rentabilidad_objetivo
         description: Indica si la oportunidad alcanza la rentabilidad objetivo del 20%.
