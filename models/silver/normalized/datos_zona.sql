@@ -1,4 +1,4 @@
--- Tabla Silver core de datos de zona.
+-- Tabla Silver normalized de datos de zona.
 -- Relaciona indicadores socioeconómicos y cualitativos con una zona y una fecha.
 
 with base as (

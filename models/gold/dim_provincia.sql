@@ -5,7 +5,7 @@
 --
 -- OBJETIVO:
 -- Dimensión de provincias para análisis territorial.
--- Se construye desde la tabla Silver core provincias.
+-- Se construye desde la tabla Silver normalized provincias.
 
 {{ config(materialized='table') }}
 

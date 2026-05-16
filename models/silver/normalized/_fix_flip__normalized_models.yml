@@ -1,13 +1,13 @@
-# _fix_flip__core_models.yml
+# _fix_flip__normalized_models.yml
 # ============================================================================
-# Este archivo documenta y testea las tablas Silver core del proyecto Fix & Flip.
+# Este archivo documenta y testea las tablas Silver normalized del proyecto Fix & Flip.
 # No transforma datos directamente: la lógica de transformación está en los .sql.
 #
-# Los modelos core construyen el modelo relacional normalizado a partir de los
+# Los modelos normalized construyen el modelo relacional normalizado a partir de los
 # modelos staging. Aquí ya se separan entidades como provincias, municipios,
 # zonas, propiedades, anuncios, costes de reforma y operaciones.
 #
-# Objetivo de Silver core:
+# Objetivo de Silver normalized:
 #   - reducir duplicidades
 #   - crear claves únicas
 #   - relacionar tablas mediante FK
@@ -29,7 +29,7 @@ models:
 
   - name: provincias
     description: >
-      Tabla Silver core de provincias. Se construye a partir del seed
+      Tabla Silver normalized de provincias. Se construye a partir del seed
       municipios_provincias y de las provincias detectadas en costes de reforma.
       Sirve como catálogo geográfico para relacionar municipios, zonas y costes.
     columns:
@@ -52,7 +52,7 @@ models:
 
   - name: municipios
     description: >
-      Tabla Silver core de municipios. Se construye a partir de los municipios
+      Tabla Silver normalized de municipios. Se construye a partir de los municipios
       detectados en staging y se enriquece con el seed municipios_provincias
       para obtener provincia y código INE.
     columns:
@@ -330,7 +330,7 @@ models:
 
   - name: tipos_reforma
     description: >
-      Tabla Silver core con los tipos de reforma normalizados. Sirve como
+      Tabla Silver normalized con los tipos de reforma normalizados. Sirve como
       catálogo para clasificar los costes de reforma.
     columns:
       - name: id_tipo_reforma
@@ -353,7 +353,7 @@ models:
 
   - name: categorias_reforma
     description: >
-      Tabla Silver core con las categorías de reforma normalizadas. Sirve como
+      Tabla Silver normalized con las categorías de reforma normalizadas. Sirve como
       catálogo para clasificar los trabajos incluidos en los costes de reforma.
     columns:
       - name: id_categoria_reforma
@@ -373,7 +373,7 @@ models:
 
   - name: costes_reforma
     description: >
-      Tabla Silver core de costes de reforma. Cada fila representa un coste
+      Tabla Silver normalized de costes de reforma. Cada fila representa un coste
       estimado por tipo de reforma, categoría, provincia, calidad de material,
       fuente y fecha de captura.
     columns:
@@ -450,7 +450,7 @@ models:
 
   - name: operaciones_fix_flip
     description: >
-      Tabla Silver core de operaciones Fix & Flip. Cada fila representa un
+      Tabla Silver normalized de operaciones Fix & Flip. Cada fila representa un
       análisis de inversión asociado a un anuncio inmobiliario.
     columns:
       - name: id_operacion
@@ -513,7 +513,7 @@ models:
 
   - name: datos_zona
     description: >
-      Tabla Silver core de datos de zona. Cada fila representa indicadores
+      Tabla Silver normalized de datos de zona. Cada fila representa indicadores
       socioeconómicos y cualitativos de una zona en una fecha concreta.
     columns:
       - name: id_dato_zona

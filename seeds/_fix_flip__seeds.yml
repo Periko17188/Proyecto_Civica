@@ -18,7 +18,7 @@ seeds:
   - name: municipios_provincias
     description: >
       Catálogo de municipios, provincias, comunidades autónomas y códigos INE
-      usado para enriquecer la capa Silver core. Permite evitar CASE manuales
+      usado para enriquecer la capa Silver normalized. Permite evitar CASE manuales
       en los modelos de provincias y municipios.
     columns:
       - name: nombre_municipio

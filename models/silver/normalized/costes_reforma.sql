@@ -1,4 +1,4 @@
--- Tabla Silver core de costes de reforma.
+-- Tabla Silver normalized de costes de reforma.
 -- Relaciona cada coste con tipo de reforma, categoría y provincia.
 
 with base as (

@@ -5,7 +5,7 @@
 --
 -- OBJETIVO:
 -- Dimensión de portales inmobiliarios para analizar el origen de los anuncios.
--- Se construye desde la tabla Silver core portales.
+-- Se construye desde la tabla Silver normalized portales.
 
 {{ config(materialized='table') }}
 

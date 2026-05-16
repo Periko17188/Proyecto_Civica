@@ -1,4 +1,4 @@
--- Tabla Silver core de municipios.
+-- Tabla Silver normalized de municipios.
 -- Se crea a partir de los municipios detectados en staging.
 -- Se enriquece con el seed municipios_provincias para obtener provincia y código INE.
 

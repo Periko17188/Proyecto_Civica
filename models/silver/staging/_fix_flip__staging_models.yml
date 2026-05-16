@@ -19,7 +19,7 @@
 #   - accepted_values: limita una columna a valores permitidos
 #
 # Estos modelos no son todavía el modelo relacional final.
-# Sirven como base limpia para construir las tablas Silver core.
+# Sirven como base limpia para construir las tablas Silver normalized.
 
 version: 2
 
