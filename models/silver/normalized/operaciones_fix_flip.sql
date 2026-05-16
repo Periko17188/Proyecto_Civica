@@ -1,4 +1,4 @@
--- Tabla Silver core de operaciones Fix & Flip.
+-- Tabla Silver normalized de operaciones Fix & Flip.
 -- Relaciona cada análisis de inversión con el anuncio analizado.
 
 with operaciones_base as (

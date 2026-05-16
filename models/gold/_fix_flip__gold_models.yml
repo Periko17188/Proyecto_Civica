@@ -3,7 +3,7 @@
 # Este archivo documenta y testea los modelos Gold del proyecto Fix & Flip.
 #
 # Gold contiene las tablas finales orientadas a análisis y Power BI.
-# Aquí se crean dimensiones y hechos a partir de Silver core.
+# Aquí se crean dimensiones y hechos a partir de Silver normalized.
 #
 # Convenciones:
 #   - dim_ = dimensiones

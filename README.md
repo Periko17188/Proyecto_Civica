@@ -75,8 +75,8 @@ proyecto_civica/
 │   │   │   ├── stg_datos_zona.sql
 │   │   │   └── stg_operaciones_fix_flip.sql
 │   │   │
-│   │   └── core/
-│   │       ├── _fix_flip__core_models.yml
+│   │   └── normalized/
+│   │       ├── _fix_flip__normalized_models.yml
 │   │       ├── provincias.sql
 │   │       ├── municipios.sql
 │   │       ├── zonas.sql
@@ -167,7 +167,7 @@ Modelos `stg_` que limpian:
 - Textos con errores, mayúsculas, minúsculas o valores en inglés.
 - Categorías de negocio.
 
-### Silver core
+### Silver normalized
 
 Modelo relacional normalizado con entidades como:
 
@@ -366,9 +366,9 @@ Porque permite conservar el dato original y aplicar la limpieza de forma control
 
 ---
 
-### ¿Por qué separar Silver en staging y core?
+### ¿Por qué separar Silver en staging y normalized?
 
-Porque staging limpia datos y core construye el modelo relacional final.
+Porque staging limpia datos y normalized construye el modelo relacional final.
 
 ---
 
@@ -468,7 +468,7 @@ Power BI construirá:
 | Sources | `models/silver/staging/_fix_flip__sources.yml` |
 | Freshness | `_fix_flip__sources.yml` |
 | Staging | `models/silver/staging/stg_*.sql` |
-| Modelos core | `models/silver/core/*.sql` |
+| Modelos normalized | `models/silver/normalized/*.sql` |
 | Modelo Gold | `models/gold/dim_*.sql`, `models/gold/fct_*.sql` |
 | Seeds | `seeds/municipios_provincias.csv`, `_fix_flip__seeds.yml` |
 | Snapshots | `snapshots/snp_anuncios_propiedades.sql` |

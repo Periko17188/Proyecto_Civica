@@ -5,7 +5,7 @@
 --
 -- OBJETIVO:
 -- Dimensión de tipos de inmueble para análisis en Power BI.
--- Se construye desde la tabla Silver core tipos_inmueble.
+-- Se construye desde la tabla Silver normalized tipos_inmueble.
 
 {{ config(materialized='table') }}
 

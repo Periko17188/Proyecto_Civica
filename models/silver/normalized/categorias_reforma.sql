@@ -1,4 +1,4 @@
--- Tabla Silver core de categorías de reforma.
+-- Tabla Silver normalized de categorías de reforma.
 -- Catálogo normalizado creado a partir de las categorías detectadas en costes de reforma.
 
 with categorias_origen as (

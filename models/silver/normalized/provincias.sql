@@ -1,4 +1,4 @@
--- Tabla Silver core de provincias.
+-- Tabla Silver normalized de provincias.
 -- Se crea a partir del seed municipios_provincias y de provincias detectadas
 -- en los costes de reforma.
 

@@ -1,4 +1,4 @@
--- Tabla Silver core de tipos de reforma.
+-- Tabla Silver normalized de tipos de reforma.
 -- Catálogo normalizado creado a partir de los tipos detectados en costes de reforma.
 
 with tipos_origen as (

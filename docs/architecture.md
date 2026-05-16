@@ -53,9 +53,9 @@ Ejemplos:
 
 ---
 
-### Silver core
+### Silver normalized
 
-La carpeta `models/silver/core` contiene el modelo relacional normalizado:
+La carpeta `models/silver/normalized` contiene el modelo relacional normalizado:
 
 - provincias
 - municipios

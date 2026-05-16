@@ -45,9 +45,9 @@ models:
         +materialized: view
         +tags: ["silver", "staging"]
 
-      core:
+      normalized:
         +materialized: view
-        +tags: ["silver", "core"]
+        +tags: ["silver", "normalized"]
 
     # ------------------------------------------------------------------------
     # GOLD
