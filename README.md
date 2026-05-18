@@ -61,9 +61,10 @@ proyecto_civica/
 │
 ├── macros/
 │   ├── cleaning_utils.sql                 ← Macros de limpieza de fechas, importes, booleanos
-│   ├── generate_database_name.sql          ← Control de base de datos por entorno
-│   └── generate_schema_name.sql            ← Control del schema destino
-│
+│   ├── generate_database_name.sql         ← Control de base de datos por entorno
+│   ├── generate_schema_name.sql           ← Control del schema destino
+│   └── normalizar_ubicaciones.sql         ← Normalización de negocio/ubicaciones
+|
 ├── models/
 │   ├── silver/
 │   │   ├── staging/

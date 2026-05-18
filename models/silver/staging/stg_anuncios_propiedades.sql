@@ -98,26 +98,9 @@ final as (
 
         direccion_aproximada,
 
-        case
-            when municipio_clean in ('granada', 'graná')                    then 'Granada'
-            when municipio_clean = 'maracena'                               then 'Maracena'
-            when municipio_clean in ('armilla', 'armila')                   then 'Armilla'
-            when municipio_clean = 'albolote'                               then 'Albolote'
-            when municipio_clean in ('churriana', 'churriana de la vega')   then 'Churriana de la Vega'
-            when municipio_clean in ('gabias', 'las gabias')                then 'Las Gabias'
-            when municipio_clean in ('almunecar', 'almuñecar', 'almuñécar') then 'Almuñécar'
-            else initcap(municipio_clean)
-        end as municipio,
+        {{ normalizar_municipio('municipio_clean') }} as municipio,
 
-        case
-            when barrio_zona_clean in ('la chana', 'la chna', 'chana')                                                 then 'La Chana'
-            when barrio_zona_clean in ('zaidin', 'zaidín')                                                             then 'Zaidín'
-            when barrio_zona_clean in ('centro', 'cento')                                                              then 'Centro'
-            when barrio_zona_clean in ('norte', 'zona norte')                                                          then 'Norte'
-            when barrio_zona_clean = 'realejo'                                                                         then 'Realejo'
-            when barrio_zona_clean in ('centro almunecar', 'centro almuñecar', 'centro almuñécar', 'centro almunécar') then 'Centro Almuñécar'
-            else initcap(barrio_zona_clean)
-        end as barrio_zona,
+        {{ normalizar_barrio_zona('barrio_zona_clean') }} as barrio_zona,
 
         codigo_postal,
 
